@@ -6,7 +6,7 @@ export function Login() {
     return (
         <Fragment>
 
-            <div class="p-3 mb-2 bg-dark text-white" style={{padding:500000}}>
+            <div class="p-3 mb-2 bg-dark text-white" >
                 <img src="logo.jpeg" className="rounded mx-auto d-block" width={300} height={150} alt="..." />
                 <h1 className="text-center" style={{padding:20}}>Please sign in</h1>
                 <div className="container text-center  " >
