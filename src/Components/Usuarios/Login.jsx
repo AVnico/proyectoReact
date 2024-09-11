@@ -19,7 +19,7 @@ export function Login() {
                             <input type="password" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"></input>
                         </div>
                     </div>
-                    <button className="btn btn-primary" onClick={() => navigate("/Peliculas")}>Sign in</button>
+                    <button className="btn btn-primary" onClick={() => navigate("/home")}>Sign in</button>
                 </div>
             </div>
         </Fragment>

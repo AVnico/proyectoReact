@@ -2,7 +2,8 @@ import React from "react";
 import { Fragment } from "react";
 import { Route,Routes,useNavigate } from "react-router-dom";
 import { Login } from "./Components/Usuarios/Login";
-import { Lista } from "./Components/visualPeliculas/Lista";
+import { Lista } from "./Components/vistaPrincipal/Lista";
+import { VistaPrincipal } from "./Components/vistaPrincipal/VistaPrincipal";
 export function App(){
 
     const navigate = useNavigate();
@@ -11,6 +12,7 @@ export function App(){
     <Fragment>
         <Routes>
             <Route path="/peliculas" element={<Lista/>} />
+            <Route path="/home" element={<VistaPrincipal/>} />
             <Route path="*" element={<Login/>} />
         </Routes>
     </Fragment>);
