@@ -1,15 +1,14 @@
 import React from "react";
 import { Fragment } from "react";
-
 import { Pelicula } from "./Pelicula";
 import { HeaderG } from "../Busqueda/HeaderG";
-
+import '../../a.css'
 export function Lista(){
     return (
         <Fragment>
-            <div style={appStyle}>
+            <div className="vista">
+            <div class="container-fluid">
             <HeaderG></HeaderG>
-            <div class="container">
                 <div class="row">
                     <div class="col"><Pelicula></Pelicula></div>
                     <div class="col"><Pelicula></Pelicula></div>
@@ -23,16 +22,9 @@ export function Lista(){
                     <div class="col"><Pelicula></Pelicula></div>
                 </div>
             </div> 
-                
             </div>
+            
             
         </Fragment>
     )
 }
-const appStyle = {
-    backgroundImage: `url('/fondo.jpg')`, 
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    minHeight: '100vh', 
-};

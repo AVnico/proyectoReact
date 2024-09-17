@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import '../../a.css'
 
 export function Login() {
     const navigate = useNavigate();
@@ -32,9 +33,10 @@ export function Login() {
 
     return (
         <Fragment>
-            <div className=" ">
-                <img src="NewLogo.png" className="rounded mx-auto d-block" width={450} height={220} alt="..." />
-                <h1 className="text-center" style={{padding:20}}>Por favor, inicie sesión</h1>
+            <div className="login ">
+               <div className="container-fluid">
+                <header><h1 class = "text-center text-light">Bienvenido a CUEVANA</h1></header>
+                <h3 className="text-center text-light mt-5"  style={{padding:20}}>Por favor, inicie sesión</h3>
                 <div className="container text-center " >
                     <div className="row justify-content-center" style={{padding:10}}>
                         <div className="col-auto">
@@ -64,6 +66,7 @@ export function Login() {
                     </div>
                     <button className="btn btn-primary" onClick={handleLogin}>Iniciar sesión</button>
                 </div>
+               </div>
             </div>
         </Fragment>
     );

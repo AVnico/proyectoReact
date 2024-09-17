@@ -7,7 +7,7 @@ export function Caruselhome(){
     return(
         <Fragment>
              
-             <div className="carousel-container" style={carouselContainerStyle}>
+             <div className="carousel-container " style={carouselContainerStyle}>
             <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -16,7 +16,7 @@ export function Caruselhome(){
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                <img src="simios.jpg" class="d-block w-100" alt="..."></img>
+                <img src="mufasa.jpg" class="d-block w-100" alt="..."></img>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>First slide label</h5>
                     <p>Some representative placeholder content for the first slide.</p>

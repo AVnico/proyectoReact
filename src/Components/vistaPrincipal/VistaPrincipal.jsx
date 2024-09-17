@@ -2,24 +2,29 @@ import React from "react";
 import { Fragment } from "react";
 import { HeaderG } from "../Busqueda/HeaderG";
 import { Caruselhome } from "./CaruselHome";
-
+import '../../a.css'
 
 export function VistaPrincipal(){
 
     return(
         <Fragment>
-            <div style={appStyle}>
+            
+            <div className="vista">
+            <div className="container-fluid">
             <HeaderG></HeaderG>
-            <Caruselhome></Caruselhome>
+                <div class="row">
+                    <div class="col-2"> 
+                        <h2>Calendario</h2>
+                    </div>
+                    <div class="col">
+                    <Caruselhome></Caruselhome>
+            
+                    </div>
+                </div>
+            </div>
             </div>
             
+          
         </Fragment>
     )
 }
-const appStyle = {
-    backgroundImage: `url('/fondo.jpg')`, 
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    minHeight: '100vh', 
-};

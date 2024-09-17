@@ -33,7 +33,7 @@ return(
                 <form className="form-inline my-2 my-lg-0 ml-2">
                 <input className="form-control mr-sm-2 ml-4" type="search" placeholder="Buscar" aria-label="Search" />
                 </form>
-                <button className="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit">Buscar Película</button>
+                <button className="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit">Buscar</button>
             </div>
             </nav>
         </div>
