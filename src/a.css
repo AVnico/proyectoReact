@@ -1,6 +1,14 @@
-.vista {
-    background-image: url("/public/fondo.jpg"); 
+/* Definir colores principales */
+:root {
+    --main-bg-color: #97c4f0;  
+    --header-bg-color: #2c3e50; 
+    --sidebar-bg-color: #34495e; 
+    --highlight-color: #f28b82; 
+    --hover-color: #3498db;    
+}
 
+.login {
+    background-image: url("/public/login.jpg"); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -10,15 +18,101 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.login {
-    background-image: url("/public/login.jpg"); 
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh; 
-    width: 100%; 
-    display: flex; 
+/*  vista principal */
+.vista {
+    background-color: var(--main-bg-color);
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--header-bg-color);
+    color: var(--sidebar-text-color);
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Sidebar calendario y géneros */
+.sidebar {
+    background-color: var(--sidebar-bg-color); 
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: var(--sidebar-text-color); 
+}
+
+/*  calendario  */
+.calendar-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    background-color: var(--highlight-color);
+    color: white;
+    border-radius: 50%;
+}
+
+.event-tooltip {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Géneros*/
+.generos-container {
+    padding: 20px;
+    background-color: transparent;
+    width: 100%;
+    color: var(--sidebar-text-color);
+}
+
+.generos-title {
+    font-size: 16px;
+    color: var(--sidebar-text-color);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.generos-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.generos-item {
+    margin-bottom: 10px;
+}
+
+.generos-link {
+    color: var(--sidebar-text-color); 
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.generos-link:hover {
+    color: var(--hover-color); 
+}
+
+/* Contenido principal (centrado en la vista principal) */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: var(--main-bg-color);
+    color: #333; /* Texto oscuro */
 }

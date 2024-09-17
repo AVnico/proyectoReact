@@ -4,7 +4,8 @@ import { Route,Routes,useNavigate } from "react-router-dom";
 import { Login } from "./Components/Usuarios/Login";
 import { Lista } from "./Components/vistaPrincipal/Lista";
 import { VistaPrincipal } from "./Components/vistaPrincipal/VistaPrincipal";
-import { PelIndividual } from "./Components/vistaIndividual/PelIndividual";
+import { VistaIndPel } from "./Components/vistaIndividual/VistaIndPel";
+
 
 export function App(){
 
@@ -15,7 +16,7 @@ export function App(){
         <Routes>
             <Route path="/peliculas" element={<Lista/>} />
             <Route path="/home" element={<VistaPrincipal/>} />
-            <Route path="/pelicula" element={<PelIndividual/>} />
+            <Route path="/pelicula" element={<VistaIndPel/>} />
             <Route path="*" element={<Login/>} />
         </Routes>
     </Fragment>);

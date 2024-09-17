@@ -1,17 +1,15 @@
 import React from "react";
 import { Fragment } from "react";
 import { HeaderG } from "../Busqueda/HeaderG";
-import { Caruselhome } from "./CaruselHome";
 import { Calendario } from "../Busqueda/Calendario";
 import { ListGeneros } from "../Busqueda/ListGeneros";
-import '../../a.css'
+import { PelIndividual } from "./PelIndividual";
 
-export function VistaPrincipal(){
+export function VistaIndPel(){
 
     return(
         <Fragment>
-            
-            <div className="vista">
+             <div className="vista">
             <div className="container-fluid">
             <HeaderG></HeaderG>
                 <div class="row">
@@ -23,14 +21,11 @@ export function VistaPrincipal(){
                         </div>
                     </div>
                     <div class="col">
-                    <Caruselhome></Caruselhome>
-            
+                        <PelIndividual></PelIndividual>
                     </div>
                 </div>
             </div>
             </div>
-            
-          
         </Fragment>
     )
 }

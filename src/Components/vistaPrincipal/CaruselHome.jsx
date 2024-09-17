@@ -6,7 +6,7 @@ export function Caruselhome(){
 
     return(
         <Fragment>
-             
+             <h1 className="text-center">Estrenos Recientes</h1>
              <div className="carousel-container " style={carouselContainerStyle}>
             <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators">
@@ -18,22 +18,18 @@ export function Caruselhome(){
                 <div class="carousel-item active">
                 <img src="mufasa.jpg" class="d-block w-100" alt="..."></img>
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
+            
                 </div>
                 </div>
                 <div class="carousel-item">
                 <img src="deadpol.jpg" class="d-block w-100" alt="..."></img>
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
+                
                 </div>
                 </div>
                 <div class="carousel-item">
                 <img src="mufasa.jpg" class="d-block w-100" alt="..."></img>
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
                 </div>
                 </div>
             </div>

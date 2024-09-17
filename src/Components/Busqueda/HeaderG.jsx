@@ -1,41 +1,50 @@
-
 import React from "react";
 import { Fragment } from "react";
+import { FaSearch, FaUser, FaFilm } from 'react-icons/fa'; // Añadir iconos de búsqueda y perfil
+import { Link } from 'react-router-dom'; // Si usas react-router para navegación interna
 
-export function HeaderG(){
-return(
+export function HeaderG() {
+  return (
     <Fragment>
-        <div className="navbar d-flex justify-content-center navbar-transparent">
-            <nav className="navbar navbar-expand-lg navbar-light navbar-transparent">
-            <a className="navbar-brand" href="/home">CUEVANA20</a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                    <a className="nav-link" href="/peliculas">Películas <span className="sr-only"></span></a>
-                </li>
-
-                <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Géneros
-                    </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="#">Acción</a>
-                    <a className="dropdown-item" href="#">Ciencia Ficción</a>
-                    <a className="dropdown-item" href="#">Terror</a>
-                    <a className="dropdown-item" href="#">Animadas</a>
-                    </div>
-                </li>
-                </ul>
-                <form className="form-inline my-2 my-lg-0 ml-2">
-                <input className="form-control mr-sm-2 ml-4" type="search" placeholder="Buscar" aria-label="Search" />
-                </form>
-                <button className="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit">Buscar</button>
-            </div>
-            </nav>
+      <div className="navbar d-flex justify-content-between navbar-transparent align-items-center">
+        {/* Logo o icono alineado a la izquierda */}
+        <div className="navbar-brand-left d-flex align-items-center">
+          <Link className="navbar-brand" to="/home">
+            <FaFilm size={32} color="#ffffff" /> {/* Reemplaza con el icono que desees */}
+          </Link>
         </div>
-</Fragment>
-)}
+
+        {/* Menú centrado: Películas, Series, Nuevos Estrenos */}
+        <div className="navbar-center d-flex justify-content-center">
+          <ul className="navbar-nav d-flex flex-row">
+            <li className="nav-item mx-3">
+              <Link className="nav-link" to="/peliculas">Películas</Link>
+            </li>
+            <li className="nav-item mx-3">
+              <Link className="nav-link" to="/series">Series</Link>
+            </li>
+            <li className="nav-item mx-3">
+              <Link className="nav-link" to="/estrenos">Nuevos Estrenos</Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Perfil e ícono de búsqueda alineados a la derecha */}
+        <div className="navbar-right d-flex align-items-center">
+          {/* Icono de búsqueda */}
+          <form className="form-inline my-2 my-lg-0 d-flex align-items-center">
+            <input className="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" />
+            <button className="btn btn-transparent" type="submit">
+              <FaSearch size={20} color="#ffffff" /> {/* Icono de lupa */}
+            </button>
+          </form>
+
+          {/* Icono de perfil */}
+          <Link to="/perfil" className="nav-link ml-3">
+            <FaUser size={28} color="#ffffff" /> {/* Icono de perfil */}
+          </Link>
+        </div>
+      </div>
+    </Fragment>
+  );
+}
