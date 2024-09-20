@@ -1,0 +1,42 @@
+.peliculas-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columnas */
+    gap: 16px; 
+    margin: 20px; 
+}
+
+.pelicula-card {
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    padding: 16px; 
+    background-color: #fff; 
+    text-align: center; 
+    height: 50s0px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
+}
+
+.pelicula-card img {
+    width: 100%; 
+    height: auto; 
+    max-height: 200px; 
+    object-fit: cover; 
+}
+
+.card {
+    display: flex;
+    flex-direction: column; 
+    height: 100%; 
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%; 
+}
+
+.btn {
+    margin-top: auto; 
+}
