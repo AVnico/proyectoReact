@@ -5,6 +5,7 @@ import { Login } from "./Components/Usuarios/Login";
 import { Lista } from "./Components/vistaPrincipal/Lista";
 import { VistaPrincipal } from "./Components/vistaPrincipal/VistaPrincipal";
 import { VistaIndPel } from "./Components/vistaIndividual/VistaIndPel";
+import { Register } from "./Components/Usuarios/Register";
 
 export function App() {
     return (
@@ -12,6 +13,7 @@ export function App() {
             <Routes>
                 <Route path="/peliculas" element={<Lista />} />
                 <Route path="/home" element={<VistaPrincipal />} />
+                <Route path="/register" element={<Register/>}/>
                 {/* Ruta dinámica para la película con un ID */}
                 <Route path="/pelicula/:id" element={<VistaIndPel />} />
                 <Route path="*" element={<Login />} />

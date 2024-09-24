@@ -116,3 +116,12 @@
     background-color: var(--main-bg-color);
     color: #333; /* Texto oscuro */
 }
+
+.register {
+    background-color: var(--main-bg-color);
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
