@@ -1,6 +1,6 @@
 .peliculas-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columnas */
+    grid-template-columns: repeat(3, 1fr); /* 5 columnas */
     gap: 16px; 
     margin: 20px; 
 }

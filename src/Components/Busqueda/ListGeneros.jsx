@@ -8,9 +8,10 @@ export function ListGeneros() {
         { name: 'Animacion', url: '/animacion' },
         { name: 'Anime', url: '/anime' },
         { name: 'Aventura', url: '/aventura' },
-        { name: 'Biografia', url: '/biografia' },
+        { name: 'Drama', url: '/drama' },
         { name: 'Ciencia Ficcion', url: '/ciencia-ficcion' },
-        { name: 'Comedia', url: '/comedia' }
+        { name: 'Comedia', url: '/comedia' },
+        { name: 'Fantasia', url: '/fantasia' }
     ];
 
     return (

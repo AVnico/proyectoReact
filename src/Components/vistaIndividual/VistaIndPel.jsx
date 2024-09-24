@@ -4,6 +4,7 @@ import { HeaderG } from "../Busqueda/HeaderG";
 import { Calendario } from "../Busqueda/Calendario";
 import { ListGeneros } from "../Busqueda/ListGeneros";
 import { PelIndividual } from "./PelIndividual";
+import { Comentarios } from "./Comentarios";
 
 export function VistaIndPel() {
     return (
@@ -21,6 +22,7 @@ export function VistaIndPel() {
                         </div>
                         <div className="col"> 
                             <PelIndividual />
+                            <Comentarios/>
                         </div>
                     </div>
                 </div>
