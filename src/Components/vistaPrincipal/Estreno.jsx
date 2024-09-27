@@ -17,7 +17,7 @@ export function Estreno({ estreno }) {
                     className="btn-serie btn-success" 
                     onClick={() => navigate(`/estreno/${estreno.id}`)}
                 >
-                    Ver
+                    Ver detalles
                 </button>
             </div>
         </Fragment>
