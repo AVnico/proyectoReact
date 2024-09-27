@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Endpoint para obtener una película por su ID
+// Endpoint para obtener una serie por su ID
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
