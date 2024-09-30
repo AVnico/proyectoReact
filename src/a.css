@@ -1,8 +1,8 @@
 /* Definir colores principales */
 :root {
-    --main-bg-color: #97c4f0;  
-    --header-bg-color: #2c3e50; 
-    --sidebar-bg-color: #34495e; 
+    --main-bg-color: #ffffff;  
+    --header-bg-color: #6aa0d6; 
+    --sidebar-bg-color: #7eafe0; 
     --highlight-color: #f28b82; 
     --hover-color: #3498db;    
 }
@@ -36,6 +36,11 @@
     text-align: center;
     font-size: 18px;
     font-weight: bold;
+    position: fixed;
+    width: 100%;
+    z-index: 1000; /* Para asegurarse de que esté encima de otros elementos */
+    
+    padding: 10px 20px;
 }
 
 /* Sidebar calendario y géneros */
@@ -47,6 +52,13 @@
     flex-direction: column;
     justify-content: flex-start;
     color: var(--sidebar-text-color); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Ajusta según el ancho que desees */
+    height: 100%; /* Para que ocupe todo el alto de la ventana */
+    padding-top: 60px; /* Espacio superior para que no cubra el navbar */
+    z-index: 999; /* Asegúrate de que esté debajo del navbar */
 }
 
 /*  calendario  */
@@ -124,4 +136,156 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+/*Calendario*/
+.calendar-container {
+    position: relative;
+  }
+  
+  .highlight {
+    background-color: rgb(255, 0, 0);
+    border-radius: 50%;
+  }
+  
+  .event-bubble {
+    position: absolute;
+    background-color: rgba(6, 26, 209, 0.8);
+    color: rgb(250, 250, 250);
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    z-index: 1000;
+    transform: translate(-50%, -100%);
+    white-space: nowrap;
+  }
+  
+  .event-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+  }
+  
+  /* Círculo rojo para las notificaciones */
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+/* Menú desplegable de notificaciones */
+.notification-menu {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    width: 250px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.notification-menu ul {
+    padding: 10px;
+    margin: 0;
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #f1f1f1;
+    cursor: pointer;
+}
+
+.notification-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Cursor en el ícono de la campanita */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Contenedor principal de géneros */
+.generos-container {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Título de la lista */
+.generos-title {
+    font-size: 1.5rem; /* Ajustar el tamaño del título */
+    margin-bottom: 15px;
+    color: #007bff; /* Color azul primario */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Lista de géneros */
+.generos-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Reducir el espacio entre ítems */
+}
+
+/* Cada ítem de la lista */
+.generos-item {
+    flex: 1 1 calc(20% - 10px); /* Ahora toma el 20% de la fila, más pequeños */
+    max-width: 150px; /* Máximo de 150px por ítem */
+}
+
+/* Estilo de los links */
+.generos-link {
+    display: block;
+    padding: 10px 12px; /* Menos padding para botones más pequeños */
+    background-color: #007bff; /* Color azul */
+    color: white;
+    text-decoration: none;
+    border-radius: 6px; /* Menos redondeado */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efecto hover para los links */
+.generos-link:hover {
+    background-color: #0056b3; /* Azul más oscuro en hover */
+    transform: translateY(-3px); /* Menos elevación en hover */
+}
+
+/* Para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .generos-item {
+        flex: 1 1 calc(33% - 10px); /* En pantallas pequeñas toma el 33% de la fila */
+    }
+}
+
+@media (max-width: 480px) {
+    .generos-item {
+        flex: 1 1 calc(50% - 10px); /* En pantallas muy pequeñas toma el 50% de la fila */
+    }
 }

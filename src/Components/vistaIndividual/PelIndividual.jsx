@@ -43,7 +43,7 @@ export function PelIndividual() {
         <Fragment>
             <div className="movie-container justify-content-center text-center mt-4">
                 <article className="info" itemScope itemType="https://schema.org/Movie">
-                    <figure className="poster content-center">
+                    <figure className="poster content-center mt-3">
                         <img
                             itemProp="image"
                             src={pelicula.imagen_url}
@@ -75,6 +75,88 @@ export function PelIndividual() {
 
                 </article>
             </div>
+
+            <div className="video-container mb-3" style={styles.videoContainer}>
+        {/* Barra superior con botones */}
+        <div className="top-bar" style={styles.topBar}>
+          <button style={styles.button}>
+       
+            Español Latino <span style={styles.quality}>CALIDAD HD</span>
+          </button>
+
+
+          <button style={styles.button}>
+            Descargar <span style={styles.quality}>CALIDAD HD</span>
+          </button>
+        </div>
+        {/* Reproductor de video */}
+        <div className="video-player" style={styles.videoPlayer}>
+          <div className="play-button" style={styles.playButton}>
+            <span style={styles.playIcon}>▶</span>
+          </div>
+        </div>
+      </div>
         </Fragment>
     );
 }
+const styles = {
+    videoContainer: {
+      backgroundColor: "#1c1e21", // Fondo oscuro
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "20px",
+    },
+    topBar: {
+      display: "flex",
+      justifyContent: "center",
+      marginBottom: "15px",
+      gap: "10px",
+    },
+    button: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#0056b3",
+      color: "#ffffff",
+      padding: "10px 20px",
+      borderRadius: "5px",
+      border: "none",
+      cursor: "pointer",
+      fontSize: "14px",
+      fontWeight: "bold",
+    },
+    icon: {
+      width: "20px",
+      height: "20px",
+      marginRight: "10px",
+    },
+    quality: {
+      marginLeft: "5px",
+      fontSize: "12px",
+    },
+    videoPlayer: {
+      width: "100%",
+      height: "500px",
+      backgroundColor: "#000000", // Negro para la simulación del video
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    },
+    playButton: {
+      width: "80px",
+      height: "80px",
+      backgroundColor: "rgba(255, 255, 255, 0.2)", // Fondo semitransparente
+      borderRadius: "50%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      cursor: "pointer",
+    },
+    playIcon: {
+      fontSize: "30px",
+      color: "#ffffff", // Color del icono de play
+    },
+  };

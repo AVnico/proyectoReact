@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import '../../a.css';
+import { useNavigate } from "react-router-dom";
 
 export function ListGeneros() {
     // Lista de géneros y URLs correspondientes
@@ -10,10 +11,10 @@ export function ListGeneros() {
         { name: 'Aventura', url: '/aventura' },
         { name: 'Drama', url: '/drama' },
         { name: 'Ciencia Ficcion', url: '/ciencia-ficcion' },
-        { name: 'Comedia', url: '/comedia' },
-        { name: 'Fantasia', url: '/fantasia' }
+        { name: 'Comedia', url: '/comedia' }
+ 
     ];
-
+    const navigate = useNavigate();
     return (
         <Fragment>
             <div className="generos-container">
@@ -28,6 +29,7 @@ export function ListGeneros() {
                     ))}
                 </ul>
             </div>
+            <div><button className="btn btn-danger w-100 mt-2 justify-content-back" onClick={() => navigate('/login')}>Salir</button></div>
         </Fragment>
     );
 }

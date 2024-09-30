@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../../a.css'
+import '../../a.css';
 
 export function Login() {
     const navigate = useNavigate();
@@ -23,50 +23,56 @@ export function Login() {
         
         if (res.ok) {
             console.log('Token recibido:', data.token);
-            // Guardar token en localStorage o manejar redireccionamiento
-            localStorage.setItem('token', data.token); // Ejemplo de cómo guardar el token
+            localStorage.setItem('token', data.token);
             navigate("/home"); // Redirigir a la página de inicio
         } else {
             console.log('Error:', data.error);
         }
     };
 
+    const goToRegister = () => {
+        navigate("/register"); // Redirigir a la página de registro
+    };
+
     return (
         <Fragment>
-            <div className="login ">
-               <div className="container-fluid">
-                <header><h1 class = "text-center text-light">Bienvenido a CUEVANA</h1></header>
-                <h3 className="text-center text-light mt-5"  style={{padding:20}}>Por favor, inicie sesión</h3>
-                <div className="container text-center " >
-                    <div className="row justify-content-center" style={{padding:10}}>
+            <div className="login d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+                <div className="container text-center">
+                    <header><h1 className="text-light">Bienvenido a CUEVANA</h1></header>
+                    <h3 className="text-light mt-4" style={{ padding: 20 }}>Por favor, inicie sesión</h3>
+
+                    <div className="row justify-content-center" style={{ padding: 10 }}>
                         <div className="col-auto">
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Correo"
                                 aria-label="Username"
-                                aria-describedby="basic-addon1"
                                 value={correo}
                                 onChange={(e) => setCorreo(e.target.value)}
                             />
                         </div>
                     </div>
-                    <div className="row justify-content-center" style={{padding:10}}>
-                        <div className=" col-auto">
+
+                    <div className="row justify-content-center" style={{ padding: 10 }}>
+                        <div className="col-auto">
                             <input
                                 type="password"
                                 className="form-control"
                                 placeholder="Contraseña"
                                 aria-label="Password"
-                                aria-describedby="basic-addon1"
                                 value={contraseña}
                                 onChange={(e) => setContraseña(e.target.value)}
                             />
                         </div>
                     </div>
-                    <button className="btn btn-primary" onClick={handleLogin}>Iniciar sesión</button>
+
+                    <button className="btn btn-primary mt-3" onClick={handleLogin}>Iniciar sesión</button>
+
+                    <div className="mt-3">
+                        <button className="btn btn-success" onClick={goToRegister}>Registrarse</button>
+                    </div>
                 </div>
-               </div>
             </div>
         </Fragment>
     );

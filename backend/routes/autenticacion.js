@@ -7,17 +7,26 @@ const enrutador = express.Router();
 
 // Ruta para registrar usuario
 enrutador.post('/registro', async (req, res) => {
-  const { nombre_usuario, contraseña } = req.body;
+  const { nombre_usuario, contraseña, generos } = req.body; // Añadir los géneros seleccionados
 
   try {
-    
+    // Cifrar la contraseña
     const contraseñaCifrada = await bcrypt.hash(contraseña, 10);
 
     // Insertar usuario en la base de datos
     const [resultado] = await db.query('INSERT INTO usuarios (nombre_usuario, contraseña) VALUES (?, ?)', [nombre_usuario, contraseñaCifrada]);
 
+    const usuarioId = resultado.insertId;
+
+    // Insertar géneros favoritos en la tabla usuarios_generos
+    if (generos && generos.length > 0) {
+      const generosValues = generos.map((generoId) => [usuarioId, generoId]);
+      await db.query('INSERT INTO usuarios_generos (usuario_id, genero_id) VALUES ?', [generosValues]);
+    }
+
     res.status(201).json({ mensaje: 'Usuario creado con éxito' });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Error al registrar el usuario' });
   }
 });

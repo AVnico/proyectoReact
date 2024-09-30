@@ -9,6 +9,7 @@ import { VistaPrincipal } from "./Components/vistaPrincipal/VistaPrincipal";
 import { VistaIndPel } from "./Components/vistaIndividual/VistaIndPel";
 import { VistaIndSer } from "./Components/vistaIndividual/VistaIndSer";
 import { Register } from "./Components/Usuarios/Register";
+import { PanelUsuario } from "./Components/Usuarios/PanelUsuario";
 
 export function App() {
     return (
@@ -28,6 +29,7 @@ export function App() {
                 {/* Ruta dinámica para generos de series */}
                 <Route path="/serie/:genero" element={<VistaIndSer />} />
                 <Route path="*" element={<Login />} />
+                <Route path="/user" element={<PanelUsuario />} />
             </Routes>
         </Fragment>
     );

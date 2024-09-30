@@ -22,7 +22,7 @@ export function Lista() {
             <div className="vista">
                 <div className="container-fluid">
                     <HeaderG />
-                    <div class = "row">
+                    <div class = "row mt-5" >
                         <div class = "col-2">
                             <div class = "sidebar">
                             <h2 className="text-center">Nuevos Estrenos</h2>

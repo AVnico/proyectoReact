@@ -6,10 +6,10 @@ export function Pelicula({ pelicula }) {
 
     return (
         <Fragment>
-            <div className="card text-center mb-5" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', border: 'none' }}>
+            <div className="card text-center mb-5 mt-3" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', border: 'none' }}>
                 <h2>{pelicula.nombre}</h2>
                 <img className="card-img-top" src={pelicula.imagen_url} alt={pelicula.nombre} />
-                <div className="card-body">
+                <div className="card-body ">
                     <p className="card-text">{pelicula.descripcion}</p>
                 </div>
                 <button 

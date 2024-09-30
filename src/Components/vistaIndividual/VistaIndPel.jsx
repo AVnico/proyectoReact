@@ -22,8 +22,8 @@ export function VistaIndPel() {
                         </div>
                         <div className="col"> 
                             <PelIndividual />
-                            <Comentarios/>
                         </div>
+                        <div class="col-2"><h1>Comentarios</h1> <Comentarios></Comentarios></div>
                     </div>
                 </div>
             </div>
