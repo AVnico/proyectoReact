@@ -43,10 +43,11 @@ router.get('/genero/:genero', async (req, res) => {
             FROM peliculas p
             LEFT JOIN generos g ON p.genero_id = g.id
             WHERE g.nombre = ?`, [genero]);
-        
+
         if (result.length === 0) {
             return res.status(404).json({ message: "No se encontraron películas para este género" });
         }
+
         res.json(result);  // Devolver las películas del género como JSON
     } catch (error) {
         console.error(error);

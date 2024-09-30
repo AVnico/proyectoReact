@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import '../../a.css';
 
 export function Comentarios() {
     const [valoracion, setValoracion] = useState('');
@@ -6,7 +7,7 @@ export function Comentarios() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí puedes manejar el comentario enviado, por ejemplo, guardarlo en una base de datos o mostrarlo en la pantalla.
+        
         console.log(`Valoración: ${valoracion}, Comentario: ${comentario}`);
     
         setValoracion('');
@@ -15,7 +16,9 @@ export function Comentarios() {
 
     return (
         <Fragment>
-            <div className="container-fluid mt-5">
+           <div className="coment">
+           <h1>Valoraciones</h1>
+           <div className="container-fluid mt-1">
                 <div className="row">
                     <div className="col-1"></div>
                     <div className="col">
@@ -67,6 +70,7 @@ export function Comentarios() {
                     </div>
                 </div>
             </div>
+           </div>
         </Fragment>
     );
 }

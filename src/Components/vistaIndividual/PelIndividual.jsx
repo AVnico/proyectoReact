@@ -41,22 +41,25 @@ export function PelIndividual() {
 
     return (
         <Fragment>
+            <div className="mt-4">
             <div className="movie-container justify-content-center text-center mt-4">
+            <header className="info-header">
+                        <h1 itemProp="name">{pelicula.nombre}</h1>
+                    </header>
                 <article className="info" itemScope itemType="https://schema.org/Movie">
                     <figure className="poster content-center mt-3">
                         <img
                             itemProp="image"
-                            src={pelicula.imagen_url}
                             alt={pelicula.nombre}
+                            src={pelicula.imagen_url}
+                            
                             loading="lazy"
                             className="poster-image"
                             style={{ width: '650px', height: 'auto' }} // Ajusta el tamaño aquí
                         />
                     </figure>
 
-                    <header className="info-header">
-                        <h1 itemProp="name">{pelicula.nombre}</h1>
-                    </header>
+                    
 
                     <div className="descripción" itemProp="description">
                         <p>{pelicula.descripcion}</p>
@@ -76,6 +79,7 @@ export function PelIndividual() {
                 </article>
             </div>
 
+            </div>
             <div className="video-container mb-3" style={styles.videoContainer}>
         {/* Barra superior con botones */}
         <div className="top-bar" style={styles.topBar}>

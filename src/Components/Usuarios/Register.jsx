@@ -66,7 +66,7 @@ export function Register() {
 
     return (
         <Fragment>
-            <div className="d-flex justify-content-center align-items-center" >
+            <div className="register d-flex justify-content-center align-items-center" >
                 <div className="card p-4" style={{ width: '400px', maxWidth: '100%' }}>
                     <div className="card-body">
                         <h1 className="text-center mb-4">Registro</h1>
@@ -136,6 +136,7 @@ export function Register() {
                         >
                             Registrarse
                         </button>
+                        <div><button className="btn btn-danger w-100 mt-2" onClick={() => navigate('/login')}>Salir</button></div>
                     </div>
                 </div>
             </div>

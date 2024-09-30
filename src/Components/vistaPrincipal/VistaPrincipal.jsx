@@ -44,16 +44,7 @@ export function VistaPrincipal() {
 
 
 const styles = {
-    page: {
-        backgroundColor: '#0f1123',  // Color de fondo oscuro
-        minHeight: '100vh',  // Ocupa toda la pantalla verticalmente
-        color: '#ffffff',  // Texto en blanco
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '0 20px',
-    },
+
     logo: {
         width: '150px',
         marginBottom: '20px',

@@ -6,10 +6,10 @@
 }
 
 .pelicula-card {
-    border: 1px solid #ddd; 
+
     border-radius: 8px; 
     padding: 16px; 
-    background-color: #fff; 
+    background-color: trans; 
     text-align: center; 
     height: 50s0px;
     display: flex;

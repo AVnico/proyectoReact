@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaSearch, FaUser, FaFilm, FaBell } from 'react-icons/fa'; // Añadir icono de notificación
 import { Link } from 'react-router-dom'; // Si usas react-router para navegación interna
 import '../../a.css';
 
 export function HeaderG() {
     const [notificaciones, setNotificaciones] = useState([
-        "La película 'The Killer's Game' está por estrenarse.",
-        "Te puede interesar: 'The Shade'.",
+        "La película 'Mufasa' está por estrenarse.",
+        "Te puede interesar: Las tortugas Ninja.",
     ]);
 
+    const navigate = useNavigate();
     const [mostrarNotificaciones, setMostrarNotificaciones] = useState(false);
 
     const toggleNotificaciones = () => {
@@ -21,7 +23,7 @@ export function HeaderG() {
             <div className="navbar d-flex justify-content-between navbar-transparent align-items-center ml-2 mb-4">
                 {/* Logo o icono alineado a la izquierda */}
                 <div className="navbar-brand-left d-flex align-items-center">
-                    <Link className="navbar-brand" to="/home">
+                    <Link className="navbar-brand" to="/peliculas">
                         <FaFilm size={32} color="#ffffff" /> {/* Reemplaza con el icono que desees */}
                     </Link>
                 </div>
@@ -32,11 +34,9 @@ export function HeaderG() {
                         <li className="nav-item mx-3">
                             <Link className="nav-link" to="/peliculas">Películas</Link>
                         </li>
+              
                         <li className="nav-item mx-3">
-                            <Link className="nav-link" to="/series">Series</Link>
-                        </li>
-                        <li className="nav-item mx-3">
-                            <Link className="nav-link" to="/estrenos">Nuevos Estrenos</Link>
+                            <Link className="nav-link" to="/estrenos">Recomendaciones</Link>
                         </li>
                     </ul>
                 </div>
@@ -82,7 +82,9 @@ export function HeaderG() {
                     <Link to="/user" className="nav-link ml-3">
                         <FaUser size={28} color="#ffffff" /> {/* Icono de perfil */}
                     </Link>
+                    <button className="btn btn-danger  ml-2 " onClick={() => navigate('/login')}>Salir</button>
                 </div>
+                
             </div>
         </Fragment>
     );

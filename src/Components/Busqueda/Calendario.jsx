@@ -53,6 +53,7 @@ export function Calendario() {
   return (
     <Fragment>
       <div className="calendar-container">
+      <h2 className="text-center">Nuevos Estrenos</h2>
         <Calendar
           onChange={setValue}
           value={value}

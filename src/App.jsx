@@ -15,21 +15,30 @@ export function App() {
     return (
         <Fragment>
             <Routes>
+                {/* Rutas para el listado de películas, series y estrenos */}
                 <Route path="/peliculas" element={<Lista />} />
                 <Route path="/series" element={<ListSeries />} />
                 <Route path="/estrenos" element={<ListEstrenos />} />
                 <Route path="/home" element={<VistaPrincipal />} />
-                <Route path="/register" element={<Register/>}/>
-                {/* Ruta dinámica para la película con un ID */}
+                <Route path="/register" element={<Register />} />
+                
+                {/* Ruta dinámica para la película por ID */}
                 <Route path="/pelicula/:id" element={<VistaIndPel />} />
-                {/* Ruta dinámica para generos de peliculas */}
-                <Route path="/pelicula/:genero" element={<VistaIndPel />} />
-                {/* Ruta dinámica para la serie con un ID */}
+
+                {/* Ruta dinámica para series por ID */}
                 <Route path="/serie/:id" element={<VistaIndSer />} />
-                {/* Ruta dinámica para generos de series */}
-                <Route path="/serie/:genero" element={<VistaIndSer />} />
-                <Route path="*" element={<Login />} />
+
+                {/* Rutas dinámicas para películas filtradas por género */}
+                <Route path="/genero/peliculas/:genero" element={<Lista />} />
+                
+                {/* Rutas dinámicas para series filtradas por género */}
+                <Route path="/genero/series/:genero" element={<ListSeries />} />
+
+                {/* Ruta para el panel del usuario */}
                 <Route path="/user" element={<PanelUsuario />} />
+                
+                {/* Ruta por defecto (404 o redirección) */}
+                <Route path="*" element={<Login />} />
             </Routes>
         </Fragment>
     );

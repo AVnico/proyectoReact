@@ -24,7 +24,7 @@ export function Login() {
         if (res.ok) {
             console.log('Token recibido:', data.token);
             localStorage.setItem('token', data.token);
-            navigate("/home"); // Redirigir a la página de inicio
+            navigate("/peliculas"); // Redirigir a la página de inicio
         } else {
             console.log('Error:', data.error);
         }
@@ -46,7 +46,7 @@ export function Login() {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Correo"
+                                placeholder="Username"
                                 aria-label="Username"
                                 value={correo}
                                 onChange={(e) => setCorreo(e.target.value)}

@@ -12,7 +12,7 @@ export function PanelUsuario() {
         Anime: false,
         Aventura: false,
         Drama: false,
-        CienciaFiccion: false,
+        CienciaFiccion: true,
         Comedia: false,
         Fantasia: false,
     });
@@ -33,7 +33,7 @@ export function PanelUsuario() {
     const navigate = useNavigate();
     return (
         <Fragment>
-            <div className="user-panel d-flex justify-content-center align-items-center ">
+            <div className="user-panel d-flex justify-content-center align-items-center fluid">
                 <div className="card p-4" style={{ width: '400px', maxWidth: '100%' }}>
                     <div className="card-body">
                         <h1 className="text-center ">Editar Perfil</h1>

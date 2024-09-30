@@ -19,18 +19,19 @@ export function Lista() {
 
     return (
         <Fragment>
-            <div className="vista">
-                <div className="container-fluid">
+            <div className="vista ">
+                <div className="container-fluid ">
                     <HeaderG />
                     <div class = "row mt-5" >
                         <div class = "col-2">
                             <div class = "sidebar">
-                            <h2 className="text-center">Nuevos Estrenos</h2>
+                        
                                 <Calendario />
                                 <ListGeneros />
                             </div>
                         </div>
                         <div class = "col">
+                           <h1 className="text-center">Bienvenido a Cuevana20</h1>
                         <div className="peliculas-container">
                             {peliculas.map((pelicula) => (
                                 <div className="pelicula-card" key={pelicula.id}>

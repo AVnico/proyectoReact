@@ -12,18 +12,18 @@ export function VistaIndPel() {
             <div className="vista">
                 <div className="container-fluid">
                     <HeaderG />
-                    <div className="row"> 
+                    <div className="row "> 
                         <div className="col-2"> 
-                            <div className="sidebar">
-                                <h2 className="text-center">Nuevos Estrenos</h2>
+                            <div className="sidebar mt-3 " >
+                                
                                 <Calendario />
                                 <ListGeneros />
                             </div>
                         </div>
-                        <div className="col"> 
+                        <div className="col mt-4"> 
                             <PelIndividual />
                         </div>
-                        <div class="col-2"><h1>Comentarios</h1> <Comentarios></Comentarios></div>
+                        <div class="col-2 "> <Comentarios></Comentarios></div>
                     </div>
                 </div>
             </div>

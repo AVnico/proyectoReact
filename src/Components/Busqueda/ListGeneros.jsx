@@ -18,18 +18,18 @@ export function ListGeneros() {
     return (
         <Fragment>
             <div className="generos-container">
-                <h2 className="generos-title text-primary">GÉNEROS</h2>
+                <h2 className="generos-title text-primary text-center">GÉNEROS</h2>
                 <ul className="generos-list">
                     {genres.map((genre, index) => (
-                        <li key={index} className="generos-item">
-                            <a href={genre.url} className="generos-link">
+                        <li key={index} className="generos-item text-center">
+                            <a href={genre.url} className="generos-link ">
                                 {genre.name}
                             </a>
                         </li>
                     ))}
                 </ul>
             </div>
-            <div><button className="btn btn-danger w-100 mt-2 justify-content-back" onClick={() => navigate('/login')}>Salir</button></div>
+           
         </Fragment>
     );
 }
