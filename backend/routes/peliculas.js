@@ -53,6 +53,41 @@ router.get('/genero/:genero', async (req, res) => {
     }
 });
 
+router.get('/recomendaciones/:id', async (req, res) => {
+    const { id } = req.params; // El id del usuario viene de los parámetros
+
+    try {
+        // Obtener los géneros favoritos del usuario
+        const [generosUsuario] = await db.query(`
+            SELECT genero_id FROM usuarios_generos WHERE usuario_id = ?
+        `, [id]);
+
+        if (generosUsuario.length === 0) {
+            return res.status(404).json({ message: 'El usuario no tiene géneros favoritos' });
+        }
+
+        // Extraer los ids de los géneros favoritos
+        const generoIds = generosUsuario.map(g => g.genero_id);
+
+        // Buscar las películas que coincidan con esos géneros
+        const query = `
+            SELECT p.* 
+            FROM peliculas p 
+            WHERE p.genero_id IN (?)
+        `;
+
+        const [peliculasRecomendadas] = await db.query(query, [generoIds]);
+
+        // Devolver las películas encontradas
+        res.json(peliculasRecomendadas);
+    } catch (error) {
+        console.error('Error al obtener recomendaciones:', error);
+        res.status(500).json({ message: 'Error al obtener recomendaciones' });
+    }
+});
+
+  
+
 router.get('/buscar/:nombre', async (req, res) => {
     try {
         const { nombre } = req.params;

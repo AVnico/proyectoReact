@@ -12,6 +12,7 @@ import { Register } from "./Components/Usuarios/Register";
 import { PanelUsuario } from "./Components/Usuarios/PanelUsuario";
 import { Comentarios } from "./Components/vistaIndividual/Comentarios";
 import { PeliculasPorGenero } from "./Components/Busqueda/PeliculasPorGenero";
+import { Recomendaciones } from "./Components/Usuarios/Recomendaciones";
 export function App() {
     return (
         <Fragment>
@@ -43,7 +44,7 @@ export function App() {
                 <Route path="/genero/series/:genero" element={<ListSeries />} />
 
                 <Route path="/genero/:genero" element={<PeliculasPorGenero />} />
-                
+
                 {/* Ruta para el panel de comentarios */}
                 <Route path="/pelicula/:id/comentarios" element={<Comentarios />} />
 
@@ -52,6 +53,16 @@ export function App() {
 
                 {/* Redirigir a login si no se encuentra la ruta */}
                 <Route path="*" element={<Navigate to="/login" />} />
+
+
+
+
+
+
+
+
+
+                <Route path="/recomendaciones" element={<Recomendaciones />} />
             </Routes>
         </Fragment>
     );
