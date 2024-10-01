@@ -5,7 +5,6 @@ const seriesRoute = require('./routes/series');
 const estrenosRoute = require('./routes/estrenos');
 const autenticacionRutas = require('./routes/autenticacion');
 const comentariosRutas = require('./routes/comentarios');
-const registerRoute = require('./routes/register'); 
 
 const app = express();
 app.use(cors());
@@ -16,7 +15,6 @@ app.use('/api/series', seriesRoute);
 app.use('/api/estrenos', estrenosRoute); 
 app.use('/api/autenticacion', autenticacionRutas);
 app.use('/api/comentarios', comentariosRutas);
-app.use('/api/registro', registerRoute); 
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
