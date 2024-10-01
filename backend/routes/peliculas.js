@@ -40,7 +40,7 @@ router.get('/genero/:genero', async (req, res) => {
             SELECT p.*, g.nombre AS genero_nombre 
             FROM peliculas p
             LEFT JOIN generos g ON p.genero_id = g.id
-            WHERE g.nombre COLLATE utf8_general_ci = ?`, [genero]);
+            WHERE g.nombre = ?`, [genero]);
 
         if (result.length === 0) {
             return res.status(404).json({ message: "No se encontraron películas para este género" });
