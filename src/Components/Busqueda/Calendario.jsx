@@ -8,9 +8,10 @@ export function Calendario() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const events = [
-    { date: new Date(2024, 8, 20), event: "Pelicula Sonic" },
-    { date: new Date(2024, 8, 25), event: "Pelicula DeadPool" },
-    { date: new Date(2024, 9, 5), event: "Pelicula Mufasa" }
+    { date: new Date(2024, 10, 20), event: "Avengers: Doomsday" },
+    { date: new Date(2024, 10, 25), event: "El Hoyo 2" },
+    { date: new Date(2024, 11, 5), event: "Joker: Folie à Deux" },
+    { date: new Date(2024, 10, 9), event: "Una película de Minecraft" }
   ];
 
   // Buscar si la fecha tiene un evento

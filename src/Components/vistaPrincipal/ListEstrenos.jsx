@@ -36,7 +36,7 @@ export function ListEstrenos() {
                         <div class = "col">
                         <div class="estrenos-header">
                             <h1>Próximos Estrenos</h1>
-                            <p>Las mejores series y películas que no te puedes perder</p>
+                            <p>Aca te recomendaremos las proximas películas que estan por estrenarse</p>
                         </div>
                         <div className="estrenos-container">
                             {estrenos.map((estreno) => (

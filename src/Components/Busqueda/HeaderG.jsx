@@ -68,7 +68,7 @@ export function HeaderG() {
                             <Link className="nav-link large-text" to="/peliculas">Películas</Link>
                         </li>
                         <li className="nav-item mx-3">
-                            <Link className="nav-link large-text" to="/recomendaciones">Recomendaciones</Link>
+                            <Link className="nav-link large-text" to="/estrenos">Recomendaciones</Link>
                         </li>
                     </ul>
                 </div>
