@@ -52,4 +52,24 @@ router.get('/genero/:genero', async (req, res) => {
         res.status(500).json({ message: "Error al obtener las películas por género" });
     }
 });
+
+router.get('/buscar/:nombre', async (req, res) => {
+    try {
+        const { nombre } = req.params;
+        const [result] = await pool.query(`
+            SELECT p.*, g.nombre AS genero_nombre 
+            FROM peliculas p
+            LEFT JOIN generos g ON p.genero_id = g.id
+            WHERE p.nombre LIKE ?`, [`%${nombre}%`]);
+
+        if (result.length === 0) {
+            return res.status(404).json({ message: "No se encontraron películas con ese nombre" });
+        }
+
+        res.json(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al buscar las películas por nombre" });
+    }
+});
 module.exports = router;

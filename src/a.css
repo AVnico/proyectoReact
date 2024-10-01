@@ -391,7 +391,7 @@
 /* Sección del título principal */
 .estrenos-headera {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     background: linear-gradient(to right, #1553ff, #00b7ff); 
     padding: 20px;
     border-radius: 10px;
@@ -502,6 +502,32 @@
     font-weight: bold;
     font-size: 0.9em;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.form-inline {
+    position: relative; /* Asegúrate de que la lista se posicione en relación a este contenedor */
+}
+
+.search-results {
+    position: absolute; /* Para posicionar la lista debajo del input */
+    background-color: transparent; /* Color de fondo de la lista */
+    border: 1px transparent; /* Bordes de la lista */
+    border-radius: 8px; /* Bordes redondeados */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    max-height: 200px; /* Altura máxima */
+    overflow-y: auto; /* Agrega scroll si hay muchos resultados */
+    width: 100%; /* Ancho completo para que coincida con el input */
+    left: 0; /* Asegúrate de que comience desde la izquierda */
+    top: 100%; /* Coloca la lista justo debajo del input */
+}
+
+.search-results ul {
+    padding: 10px; /* Espaciado interno */
+    cursor: pointer; /* Cambiar cursor al pasar el mouse */
+}
+
+.search-results ul:hover {
+    background-color: #f1f1f1; /* Cambia el color de fondo al pasar el mouse */
 }
 
 

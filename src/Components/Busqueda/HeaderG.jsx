@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Fragment } from "react";
+import React, { useState, useEffect, useCallback, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch, FaUser, FaFilm, FaBell, FaSignOutAlt } from 'react-icons/fa'; // Añadir icono de notificación y salir
 import { Link } from 'react-router-dom'; // Si usas react-router para navegación interna
@@ -16,7 +15,43 @@ export function HeaderG() {
 
     const toggleNotificaciones = () => {
         setMostrarNotificaciones(!mostrarNotificaciones);
-    };
+    };  //
+    const [searchTerm, setSearchTerm] = useState(""); // Estado para manejar el término de búsqueda
+    const [resultados, setResultados] = useState([]); // Estado para manejar los resultados de la búsqueda
+
+    const handleSearch = useCallback(async (term) => {
+        if (term.trim() === "") {
+            setResultados([]); // Limpiar resultados si el campo está vacío
+            return;
+        }
+
+        try {
+            // Hacer la solicitud al backend
+            const response = await fetch(`http://localhost:5000/api/peliculas/buscar/${term}`);
+
+            if (!response.ok) {
+                throw new Error('Error al buscar las películas');
+            }
+
+            const data = await response.json();
+            setResultados(data); // Guardar los resultados en el estado
+        } catch (error) {
+            console.error("Error en la búsqueda:", error);
+            setResultados([]); // Si hay un error, limpiar los resultados
+        }
+    },[]);
+
+    // useEffect para manejar la búsqueda en tiempo real
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            handleSearch(searchTerm);
+        }, 150); // Espera 300ms antes de realizar la búsqueda
+
+        return () => clearTimeout(delayDebounceFn); // Limpiar el timeout
+    }, [searchTerm, handleSearch]);
+
+    //
+
 
     return (
         <Fragment>
@@ -40,11 +75,31 @@ export function HeaderG() {
 
                 <div className="navbar-right d-flex align-items-center">
                     {/* Icono de búsqueda */}
-                    <form className="form-inline my-2 my-lg-0 d-flex align-items-center">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" />
+                    <form className="form-inline my-2 my-lg-0 d-flex align-items-center" onSubmit={handleSearch}>
+                        <input className="form-control mr-sm-2"
+                            type="search"
+                            placeholder="Buscar"
+                            aria-label="Search"
+                            value={searchTerm} // El valor del input viene del estado
+                            onChange={(e) => setSearchTerm(e.target.value)} // Actualiza el estado conforme el usuario escribe
+
+                        />
                         <button className="btn btn-transparent" type="submit">
-                            <FaSearch size={20} color="#ffffff" />
+                            <FaSearch size={20} color="#ffffff" /> {/* Icono de lupa */}
                         </button>
+
+                        {/* Resultados de la búsqueda */}
+                        {resultados.length > 0 && (
+                            <ul className="search-results" style={{ listStyleType: 'none', padding: 0, margin: 0, textAlign: 'left'  }}>
+                                {resultados.map((resultado, index) => (
+                                    <li key={index} style={{ margin: '1px 0' }}>
+                                        <Link to={`/pelicula/${resultado.id}`} className="search-result-item" style={{ textDecoration: 'none', color: '#000', padding: '10px', display: 'block', background: '#f8f9fa', borderRadius: '5px' }}>
+                                            {resultado.nombre}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </form>
 
                     {/* Icono de notificaciones */}
@@ -71,7 +126,6 @@ export function HeaderG() {
                             </div>
                         )}
                     </div>
-                    <div> <h1>    </h1></div>
 
                     {/* Icono de perfil */}
                     <Link to="/user" className="nav-link ml-5">
