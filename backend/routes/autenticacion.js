@@ -51,12 +51,15 @@ enrutador.post('/login', async (req, res) => {
       return res.status(400).json({ error: 'Contraseña incorrecta' });
     }
 
+    // Generar token y devolver usuario_id
     const token = jwt.sign({ id: usuario.id }, 'tu_secreto', { expiresIn: '1h' });
 
-    res.json({ token });
+    // Enviar el token y el usuario_id
+    res.json({ token, usuario_id: usuario.id });
   } catch (error) {
     res.status(500).json({ error: 'Error al iniciar sesión' });
   }
 });
+
 
 module.exports = enrutador;

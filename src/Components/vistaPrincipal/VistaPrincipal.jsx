@@ -2,7 +2,7 @@ import React from 'react';
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { HeaderG } from '../Busqueda/HeaderG';
-import '../../a.css';  // Puedes ajustar tu archivo de estilos
+import '../../a.css';  
 
 export function VistaPrincipal() {
     const navigate = useNavigate();

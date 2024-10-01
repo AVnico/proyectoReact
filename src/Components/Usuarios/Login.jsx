@@ -24,6 +24,7 @@ export function Login() {
         if (res.ok) {
             console.log('Token recibido:', data.token);
             localStorage.setItem('token', data.token);
+            localStorage.setItem('usuario_id', data.usuario_id); // Almacenar el usuario_id
             navigate("/peliculas"); // Redirigir a la página de inicio
         } else {
             console.log('Error:', data.error);

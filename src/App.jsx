@@ -10,6 +10,7 @@ import { VistaIndPel } from "./Components/vistaIndividual/VistaIndPel";
 import { VistaIndSer } from "./Components/vistaIndividual/VistaIndSer";
 import { Register } from "./Components/Usuarios/Register";
 import { PanelUsuario } from "./Components/Usuarios/PanelUsuario";
+import { Comentarios } from "./Components/vistaIndividual/Comentarios";
 
 export function App() {
     return (
@@ -33,6 +34,9 @@ export function App() {
                 
                 {/* Rutas dinámicas para series filtradas por género */}
                 <Route path="/genero/series/:genero" element={<ListSeries />} />
+
+                {/* Ruta para el panel de comentarios */}
+                <Route path="/pelicula/:id/comentarios" element={<Comentarios />} />
 
                 {/* Ruta para el panel del usuario */}
                 <Route path="/user" element={<PanelUsuario />} />
