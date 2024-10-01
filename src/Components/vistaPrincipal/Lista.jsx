@@ -22,7 +22,7 @@ export function Lista() {
             <div className="vista ">
                 <div className="container-fluid ">
                     <HeaderG />
-                    <div class = "row mt-5" >
+                    <div class = "row " >
                         <div class = "col-2">
                             <div class = "sidebar">
                         
@@ -31,7 +31,10 @@ export function Lista() {
                             </div>
                         </div>
                         <div class = "col">
-                           <h1 className="text-center">Bienvenido a Cuevana20</h1>
+                        <div className="estrenos-headera">
+                            <h1>BIENVENIDO A CUEVANA20</h1>
+                            <p>Las mejores series y películas que no te puedes perder...</p>
+                        </div>
                         <div className="peliculas-container">
                             {peliculas.map((pelicula) => (
                                 <div className="pelicula-card" key={pelicula.id}>

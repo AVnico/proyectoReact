@@ -43,7 +43,7 @@ export function Register() {
         };
 
         try {
-            const res = await fetch('http://localhost:5000/api/registro', {
+            const res = await fetch('http://localhost:5000/api/autenticacion/registro', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export function Register() {
 
             if (res.ok) {
                 alert('Usuario registrado con éxito');
-                navigate(`/home`);
+                navigate(`/peliculas`);
             } else {
                 const data = await res.json();
                 alert(data.error);
@@ -136,7 +136,7 @@ export function Register() {
                         >
                             Registrarse
                         </button>
-                        <div><button className="btn btn-danger w-100 mt-2" onClick={() => navigate('/login')}>Salir</button></div>
+                        <div><button className="btn btn-danger w-100 mt-2" onClick={() => navigate('/peliculas')}>Salir</button></div>
                     </div>
                 </div>
             </div>

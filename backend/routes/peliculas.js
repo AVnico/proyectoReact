@@ -33,8 +33,6 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: "Error al obtener la película" });
     }
 });
-
-// Endpoint para obtener películas por género
 router.get('/genero/:genero', async (req, res) => {
     try {
         const { genero } = req.params;
@@ -42,17 +40,16 @@ router.get('/genero/:genero', async (req, res) => {
             SELECT p.*, g.nombre AS genero_nombre 
             FROM peliculas p
             LEFT JOIN generos g ON p.genero_id = g.id
-            WHERE g.nombre = ?`, [genero]);
+            WHERE g.nombre COLLATE utf8_general_ci = ?`, [genero]);
 
         if (result.length === 0) {
             return res.status(404).json({ message: "No se encontraron películas para este género" });
         }
 
-        res.json(result);  // Devolver las películas del género como JSON
+        res.json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error al obtener las películas por género" });
     }
 });
-
 module.exports = router;

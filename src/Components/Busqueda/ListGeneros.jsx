@@ -5,20 +5,25 @@ import { useNavigate } from "react-router-dom";
 export function ListGeneros() {
     // Lista de géneros y URLs correspondientes
     const genres = [
-        { name: 'Accion', url: '/accion' },
-        { name: 'Animacion', url: '/animacion' },
-        { name: 'Anime', url: '/anime' },
-        { name: 'Aventura', url: '/aventura' },
-        { name: 'Drama', url: '/drama' },
-        { name: 'Ciencia Ficcion', url: '/ciencia-ficcion' },
-        { name: 'Comedia', url: '/comedia' }
- 
+        { name: 'Acción', url: '/genero/Acción' },
+        { name: 'Animación', url: '/genero/Animación' },
+        { name: 'Anime', url: '/genero/Anime' },
+        { name: 'Aventura', url: '/genero/Aventura' },
+        { name: 'Drama', url: '/genero/Drama' },
+        { name: 'Ciencia Ficción', url: '/genero/Ciencia Ficción' },
+        { name: 'Comedia', url: '/genero/Comedia' }
     ];
+    
     const navigate = useNavigate();
+
+    const handleGenreClick = (url) => {
+        navigate(url);
+    };
+
     return (
         <Fragment>
             <div className="generos-container">
-                <h2 className="generos-title text-primary text-center">GÉNEROS</h2>
+                <h2 className="generos-title text-blue text-center">GÉNEROS</h2>
                 <ul className="generos-list">
                     {genres.map((genre, index) => (
                         <li key={index} className="generos-item text-center">
@@ -29,7 +34,7 @@ export function ListGeneros() {
                     ))}
                 </ul>
             </div>
-           
         </Fragment>
     );
 }
+

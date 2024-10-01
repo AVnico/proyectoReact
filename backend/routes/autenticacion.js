@@ -62,4 +62,43 @@ enrutador.post('/login', async (req, res) => {
 });
 
 
+// Ruta para obtener el perfil del usuario con géneros
+enrutador.get('/perfil/:id', async (req, res) => {
+  const { id } = req.params; // ID del usuario
+
+  try {
+    // Obtener el nombre del usuario
+    const [usuario] = await db.query('SELECT nombre_usuario FROM usuarios WHERE id = ?', [id]);
+
+    if (usuario.length === 0) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    // Obtener los géneros favoritos del usuario
+    const [generos] = await db.query(`
+      SELECT g.id, g.nombre 
+      FROM generos g 
+      JOIN usuarios_generos ug ON g.id = ug.genero_id 
+      WHERE ug.usuario_id = ?
+    `, [id]);
+
+    res.json({ nombre_usuario: usuario[0].nombre_usuario, generos });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al obtener el perfil del usuario' });
+  }
+});
+
+// Ruta para obtener todos los géneros
+enrutador.get('/generos', async (req, res) => {
+  try {
+    const [generos] = await db.query('SELECT id, nombre FROM generos');
+    res.json(generos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al obtener los géneros' });
+  }
+});
+
+
 module.exports = enrutador;

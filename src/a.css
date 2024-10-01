@@ -37,7 +37,7 @@
 }
 /*  vista principal */
 .vista {
-    background-image: url("/public/asdasdasd.png"); /* La imagen de fondo */
+    background-image: url("/public/Diseño sin título.jpg"); /* La imagen de fondo */
     background-color: var(--main-bg-color); /* Color de fondo si no carga la imagen */
     background-repeat: no-repeat; /* No repetir la imagen */
     background-attachment: fixed; /* Mantener la imagen fija al hacer scroll */
@@ -60,13 +60,77 @@
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-
     width: 100%;
     z-index: 1000;
     padding: 15px 20px; /* Un solo padding */
-    top: 0; /* Para asegurarte de que se quede en la parte superior */
+    top: 0; 
+}/* Estilos para el navbar */
 
+
+/* Título de las opciones en el navbar */
+.navbar-center .nav-link.large-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s;
 }
+
+
+
+/* Iconos de usuario y notificaciones con más espacio entre ellos */
+.navbar-right .cursor-pointer {
+    cursor: pointer;
+    margin-left: 25px; /* Añade espacio entre los iconos */
+}
+
+/* Icono de notificación con círculo rojo */
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+/* Menú desplegable de notificaciones */
+.notification-menu {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    width: 250px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.notification-menu ul {
+    padding: 10px;
+    margin: 0;
+}
+
+.notification-item {
+    padding: 10px;
+    margin-left: 25px;
+    border-bottom: 1px solid #f1f1f1;
+    cursor: pointer;
+}
+
+.notification-item:hover {
+    background-color: #f1f1f1;
+}
+
+
 
 
 
@@ -249,4 +313,195 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+/* Contenedor de géneros */
+.generos-container {
+    padding: 20px;
+    text-align: center;
+    background-color:transparent;
+}
+
+/* Título de la lista de géneros */
+.generos-title {
+    font-size: 2rem; /* Tamaño del título aumentado */
+    color: #0004ff;
+    font-weight: bold;
+    margin-bottom: 30px; /* Más espacio debajo del título */
+}
+
+/* Lista de géneros */
+.generos-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Espaciado entre los ítems de la lista */
+}
+
+/* Estilo de cada ítem de la lista */
+.generos-item {
+    flex: 1 1 auto;
+}
+
+/* Estilo de los géneros como texto */
+.generos-link {
+    color: #333; /* Color de texto más oscuro */
+    font-size: 1.5rem; /* Aumentar el tamaño del texto */
+    font-weight: bold;
+    text-decoration: none;
+    padding: 5px 10px; /* Añadir un poco de padding */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Transiciones suaves */
+}
+
+/* Efecto hover: subrayado y cambio de color */
+.generos-link:hover {
+    color: #007bff; /* Cambia el color al pasar el mouse */
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+/* Adaptar a pantallas más pequeñas */
+@media (max-width: 768px) {
+    .generos-link {
+        font-size: 1.2rem; /* Reducir tamaño de texto en pantallas pequeñas */
+    }
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;500;700&display=swap');
+
+
+
+/* Contenedor principal para los estrenos */
+.estrenos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 24px; 
+    padding: 40px;
+    background-color: #f0f0f0; 
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sección del título principal */
+.estrenos-headera {
+    text-align: center;
+    margin-bottom: 40px;
+    background: linear-gradient(to right, #1553ff, #00b7ff); 
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Título principal con una fuente moderna y elegante */
+.estrenos-headera h1 {
+    font-size: 3.5em;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif; /* Nueva fuente moderna */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    background: -webkit-linear-gradient(45deg, #fffb00, #ffd901); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Efecto de gradiente en el texto */
+}
+
+
+.estrenos-headera p {
+    font-size: 1.4em;
+    color: #f5f5f5;
+    font-family: 'Lora', serif; /* Fuente serif elegante */
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0;
+}
+
+/* Estilo para cada tarjeta de película/serie */
+.estreno-card {
+    position: relative;
+    border-radius: 16px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+    background-color: #ffffff; 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.estreno-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); 
+}
+
+/* Imagen dentro de cada tarjeta */
+.estreno-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+    border-bottom: 4px solid #22a8e6; 
+}
+
+/* Contenido de la tarjeta */
+.card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Título de la película/serie */
+.card-body h3 {
+    font-size: 1.8em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Descripción de la película/serie */
+.card-body p {
+    font-size: 1em;
+    color: #7f8c8d;
+    flex-grow: 1;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Botón atractivo */
+.btn-serie {
+    background-color: #e74c3c; 
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-serie:hover {
+    background-color: #c0392b; 
+    transform: scale(1.1);
+}
+
+/* Etiqueta de 'Estreno Próximo' */
+.estreno-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #12f3f3; 
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.9em;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
 

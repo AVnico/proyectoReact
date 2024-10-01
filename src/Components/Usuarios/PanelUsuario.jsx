@@ -12,7 +12,7 @@ export function PanelUsuario() {
         Anime: false,
         Aventura: false,
         Drama: false,
-        CienciaFiccion: true,
+        CienciaFiccion: false,
         Comedia: false,
         Fantasia: false,
     });
