@@ -100,5 +100,38 @@ enrutador.get('/generos', async (req, res) => {
   }
 });
 
+// Ruta para actualizar el perfil del usuario
+enrutador.put('/perfil/:id', async (req, res) => {
+  const { id } = req.params;  // Obtener el ID del usuario de los parámetros de la ruta
+  const { nombre_usuario, contraseña, generos } = req.body;  // Extraer datos del cuerpo de la solicitud
+
+  try {
+    // Actualizar el nombre de usuario
+    await db.query('UPDATE usuarios SET nombre_usuario = ? WHERE id = ?', [nombre_usuario, id]);
+
+    // Si la contraseña está presente, encriptarla y actualizarla
+    if (contraseña) {
+      const contraseñaCifrada = await bcrypt.hash(contraseña, 10);  // Cifrar la nueva contraseña
+      await db.query('UPDATE usuarios SET contraseña = ? WHERE id = ?', [contraseñaCifrada, id]);
+    }
+
+    // Actualizar géneros favoritos (opcional)
+    if (generos && generos.length > 0) {
+      // Primero eliminamos los géneros actuales del usuario
+      await db.query('DELETE FROM usuarios_generos WHERE usuario_id = ?', [id]);
+
+      // Luego insertamos los nuevos géneros
+      const generosValues = generos.map((generoId) => [id, generoId]);
+      await db.query('INSERT INTO usuarios_generos (usuario_id, genero_id) VALUES ?', [generosValues]);
+    }
+
+    res.status(200).json({ mensaje: 'Perfil actualizado con éxito' });  // Responder con éxito
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al actualizar el perfil del usuario' });  // Manejo de errores
+  }
+});
+
+
 
 module.exports = enrutador;
