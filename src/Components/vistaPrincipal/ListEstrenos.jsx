@@ -29,18 +29,18 @@ export function ListEstrenos() {
                                 <ListGeneros />
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="estrenos-header">
-                                <h1>Próximos Estrenos</h1>
-                                <p>Las mejores series y películas que no te puedes perder</p>
-                            </div>
-                            <div className="estrenos-container">
-                                {estrenos.map((estreno) => (
-                                    <div className="estreno-card" key={estreno.id}>
-                                        <Estreno estreno={estreno} />
-                                    </div>
-                                ))}
-                            </div>
+                        <div class = "col">
+                        <div class="estrenos-header">
+                            <h1>Próximos Estrenos</h1>
+                            <p>Las mejores series y películas que no te puedes perder</p>
+                        </div>
+                        <div className="estrenos-container">
+                            {estrenos.map((estreno) => (
+                                <div className="estreno-card" key={estreno.id}>
+                                    <Estreno estreno={estreno} />
+                                </div>
+                            ))}
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ import { PanelUsuario } from "./Components/Usuarios/PanelUsuario";
 import { Comentarios } from "./Components/vistaIndividual/Comentarios";
 import { PeliculasPorGenero } from "./Components/Busqueda/PeliculasPorGenero";
 
+import { Recomendaciones } from "./Components/Usuarios/Recomendaciones";
 export function App() {
     return (
         <Fragment>
@@ -53,6 +54,16 @@ export function App() {
 
                 {/* Redirigir a login si no se encuentra la ruta */}
                 <Route path="*" element={<Navigate to="/login" />} />
+
+
+
+
+
+
+
+
+
+                <Route path="/recomendaciones" element={<Recomendaciones />} />
             </Routes>
         </Fragment>
     );

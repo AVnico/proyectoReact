@@ -70,4 +70,5 @@ enrutador.get('/generos', async (req, res) => {
   }
 });
 
+
 module.exports = enrutador;

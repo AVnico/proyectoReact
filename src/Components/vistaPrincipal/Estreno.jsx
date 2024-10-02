@@ -13,9 +13,11 @@ export function Estreno({ estreno }) {
                 <div className="card-body">
                     <p className="card-text">{estreno.descripcion}</p>
                 </div>
-                <button
-                    className="btn-serie btn-success"
-                    onClick={() => navigate(`/estreno/${estreno.id}`)}>Ver detalles
+                <button 
+                    className="btn-serie btn-success" 
+                    onClick={() => navigate(`/estreno/${estreno.id}`)}
+                >
+                    Ver detalles
                 </button>
             </div>
         </Fragment>

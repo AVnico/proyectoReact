@@ -392,7 +392,7 @@
 .estrenos-headera {
     text-align: center;
     margin-bottom: 50px;
-    background: linear-gradient(to right, #1553ff, #00b7ff);
+    background: linear-gradient(to right, #1553ff, #00b7ff); 
     padding: 20px;
     border-radius: 10px;
 }
