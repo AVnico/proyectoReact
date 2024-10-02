@@ -1,19 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaFilm } from 'react-icons/fa'; // Icono de película
 import '../../a.css';
 
 export function Register() {
     const navigate = useNavigate();
     const [showPass, setShowPass] = useState(false);
     const switchPass = () => setShowPass(!showPass);
-
-    // Datos del formulario
     const [nombreUsuario, setNombreUsuario] = useState("");
     const [contraseña, setContraseña] = useState("");
     const [generosSeleccionados, setGenerosSeleccionados] = useState([]);
-
-    // Lista de géneros
     const genres = [
         { id: 1, nombre: 'Acción' },
         { id: 2, nombre: 'Animación' },
@@ -24,8 +19,6 @@ export function Register() {
         { id: 7, nombre: 'Comedia' },
         { id: 8, nombre: 'Fantasía' },
     ];
-
-    // Manejar cambios en los checkboxes de géneros
     const handleCheckboxChange = (generoId) => {
         setGenerosSeleccionados((prevState) =>
             prevState.includes(generoId)
@@ -33,15 +26,12 @@ export function Register() {
                 : [...prevState, generoId]
         );
     };
-
-    // Enviar datos al backend
     const handleSubmit = async () => {
         const payload = {
             nombre_usuario: nombreUsuario,
             contraseña: contraseña,
-            generos: generosSeleccionados, // Generos seleccionados
+            generos: generosSeleccionados,
         };
-
         try {
             const res = await fetch('http://localhost:5000/api/autenticacion/registro', {
                 method: 'POST',
@@ -70,8 +60,6 @@ export function Register() {
                 <div className="card p-4" style={{ width: '400px', maxWidth: '100%' }}>
                     <div className="card-body">
                         <h1 className="text-center mb-4">Registro</h1>
-
-                        {/* Nombre de usuario */}
                         <div className="form-group mb-2">
                             <label htmlFor="username">Nombre de Usuario</label>
                             <input
@@ -84,8 +72,6 @@ export function Register() {
                                 required
                             />
                         </div>
-
-                        {/* Contraseña */}
                         <div className="form-group mb-2">
                             <label htmlFor="password">Contraseña</label>
                             <div className="input-group">
@@ -101,14 +87,10 @@ export function Register() {
                                 <button
                                     className="btn btn-outline-secondary"
                                     type="button"
-                                    onClick={switchPass}
-                                >
-                                    {showPass ? "Ocultar" : "Mostrar"}
+                                    onClick={switchPass}>{showPass ? "Ocultar" : "Mostrar"}
                                 </button>
                             </div>
                         </div>
-
-                        {/* Géneros favoritos */}
                         <div className="form-group mb-2">
                             <label>Géneros favoritos</label>
                             <div className="d-flex flex-wrap">
@@ -121,22 +103,25 @@ export function Register() {
                                             checked={generosSeleccionados.includes(genre.id)}
                                             onChange={() => handleCheckboxChange(genre.id)}
                                         />
-                                        <label className="form-check-label" htmlFor={`genre-${index}`}>
-                                            {genre.nombre}
+                                        <label
+                                            className="form-check-label"
+                                            htmlFor={`genre-${index}`}>{genre.nombre}
                                         </label>
                                     </div>
                                 ))}
                             </div>
                         </div>
-
-                        {/* Botón de registro */}
                         <button
                             className="btn btn-primary w-100 mt-3"
-                            onClick={handleSubmit}
-                        >
-                            Registrarse
+                            onClick={handleSubmit}>Registrarse
                         </button>
-                        <div><button className="btn btn-danger w-100 mt-2" onClick={() => navigate('/peliculas')}>Salir</button></div>
+                        <div>
+                            <button
+                                className="btn btn-danger w-100 mt-2"
+                                onClick={() => navigate('/peliculas')}
+                            >Salir
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

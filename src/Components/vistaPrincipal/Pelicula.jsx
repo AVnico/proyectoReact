@@ -13,14 +13,12 @@ export function Pelicula({ pelicula }) {
                 <div className="card-body">
                     <p className="card-text">{pelicula.descripcion}</p>
                 </div>
-                <button 
-                    className="btn-serie btn-success" 
+                <button
+                    className="btn-serie btn-success"
                     onClick={(e) => {
-                        e.preventDefault(); // Evita que se recargue la página
-                        navigate(`/pelicula/${pelicula.id}`); // Navega a la página de la película
-                    }}
-                >
-                    Ver detalles
+                        e.preventDefault();
+                        navigate(`/pelicula/${pelicula.id}`);
+                    }}>Ver detalles
                 </button>
             </div>
         </Fragment>

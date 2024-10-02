@@ -6,7 +6,6 @@ export function Login() {
     const navigate = useNavigate();
     const [correo, setCorreo] = useState('');
     const [contraseña, setContraseña] = useState('');
-
     const handleLogin = async () => {
         const res = await fetch('http://localhost:5000/api/autenticacion/login', {
             method: 'POST',
@@ -18,21 +17,18 @@ export function Login() {
                 contraseña: contraseña,
             }),
         });
-
         const data = await res.json();
-        
         if (res.ok) {
             console.log('Token recibido:', data.token);
             localStorage.setItem('token', data.token);
-            localStorage.setItem('usuario_id', data.usuario_id); // Almacenar el usuario_id
-            navigate("/peliculas"); // Redirigir a la página de inicio
+            localStorage.setItem('usuario_id', data.usuario_id);
+            navigate("/peliculas");
         } else {
             console.log('Error:', data.error);
         }
     };
-
     const goToRegister = () => {
-        navigate("/register"); // Redirigir a la página de registro
+        navigate("/register");
     };
 
     return (
@@ -41,7 +37,6 @@ export function Login() {
                 <div className="container text-center">
                     <header><h1 className="text-light">Bienvenido a CUEVANA</h1></header>
                     <h3 className="text-light mt-4" style={{ padding: 20 }}>Por favor, inicie sesión</h3>
-
                     <div className="row justify-content-center" style={{ padding: 10 }}>
                         <div className="col-auto">
                             <input
@@ -54,7 +49,6 @@ export function Login() {
                             />
                         </div>
                     </div>
-
                     <div className="row justify-content-center" style={{ padding: 10 }}>
                         <div className="col-auto">
                             <input
@@ -67,9 +61,7 @@ export function Login() {
                             />
                         </div>
                     </div>
-
                     <button className="btn btn-primary mt-3" onClick={handleLogin}>Iniciar sesión</button>
-
                     <div className="mt-3">
                         <button className="btn btn-success" onClick={goToRegister}>Registrarse</button>
                     </div>

@@ -5,14 +5,13 @@ const seriesRoute = require('./routes/series');
 const estrenosRoute = require('./routes/estrenos');
 const autenticacionRutas = require('./routes/autenticacion');
 const comentariosRutas = require('./routes/comentarios');
-
 const app = express();
+
 app.use(cors());
 app.use(express.json());
-
-app.use('/api/peliculas', peliculasRoute); 
-app.use('/api/series', seriesRoute); 
-app.use('/api/estrenos', estrenosRoute); 
+app.use('/api/peliculas', peliculasRoute);
+app.use('/api/series', seriesRoute);
+app.use('/api/estrenos', estrenosRoute);
 app.use('/api/autenticacion', autenticacionRutas);
 app.use('/api/comentarios', comentariosRutas);
 

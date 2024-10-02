@@ -5,24 +5,31 @@
 /* Contenedor principal para los estrenos */
 .estrenos-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 24px; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
     padding: 40px;
-    background-color: transparent; 
+    background-color: transparent;
     animation: fadeIn 1s ease-in-out;
 }
 
 /* Animación de entrada */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Sección del título principal */
 .estrenos-header {
     text-align: center;
     margin-bottom: 40px;
-    background: linear-gradient(to right, #e74c3c, #f39c12); 
+    background: linear-gradient(to right, #e74c3c, #f39c12);
     padding: 20px;
     border-radius: 10px;
 }
@@ -32,20 +39,20 @@
     font-size: 3.5em;
     color: #ffffff;
     margin-bottom: 10px;
-    font-family: 'Montserrat', sans-serif; /* Nueva fuente moderna */
+    font-family: 'Montserrat', sans-serif;
     letter-spacing: 2px;
     text-transform: uppercase;
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
-    background: -webkit-linear-gradient(45deg, #fffb00, #ffd901); 
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    background: -webkit-linear-gradient(45deg, #fffb00, #ffd901);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* Efecto de gradiente en el texto */
+    -webkit-text-fill-color: transparent;
 }
 
 /* Subtítulo atractivo con una fuente elegante */
 .estrenos-header p {
     font-size: 1.4em;
     color: #f5f5f5;
-    font-family: 'Lora', serif; /* Fuente serif elegante */
+    font-family: 'Lora', serif;
     font-weight: 400;
     letter-spacing: 1px;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
@@ -55,24 +62,24 @@
 /* Estilo para cada tarjeta de película/serie */
 .estreno-card {
     position: relative;
-    border-radius: 16px; 
-    overflow: hidden; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
-    background-color: #ffffff; 
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .estreno-card:hover {
     transform: translateY(-15px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); 
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 /* Imagen dentro de cada tarjeta */
 .estreno-card img {
     width: 100%;
     height: auto;
-    object-fit: cover; 
-    border-bottom: 4px solid #e67e22; 
+    object-fit: cover;
+    border-bottom: 4px solid #e67e22;
 }
 
 /* Contenido de la tarjeta */
@@ -89,7 +96,7 @@
     font-size: 1.8em;
     color: #2c3e50;
     margin-bottom: 10px;
-    font-family: 'Montserrat', sans-serif; 
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     text-align: center;
 }
@@ -105,7 +112,7 @@
 
 /* Botón atractivo */
 .btn-serie {
-    background-color: #e74c3c; 
+    background-color: #e74c3c;
     color: #fff;
     padding: 10px 16px;
     border-radius: 8px;
@@ -116,7 +123,7 @@
 }
 
 .btn-serie:hover {
-    background-color: #c0392b; 
+    background-color: #c0392b;
     transform: scale(1.1);
 }
 
@@ -125,7 +132,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: #f39c12; 
+    background-color: #f39c12;
     color: #fff;
     padding: 6px 12px;
     border-radius: 10px;
@@ -137,7 +144,7 @@
 /* Adaptación para pantallas pequeñas */
 @media (max-width: 768px) {
     .estrenos-container {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
     }
 
     .estrenos-header h1 {

@@ -2,10 +2,9 @@ import React, { useEffect, useState, Fragment } from "react";
 import { useParams } from "react-router-dom";
 
 export function SerIndividual() {
-    const { id } = useParams(); // Obtener el ID de la película desde la URL
+    const { id } = useParams();
     const [serie, setSerie] = useState(null);
     const [loading, setLoading] = useState(true);
-
     const fetchSerie = async () => {
         try {
             console.log("ID de película:", id);
@@ -21,10 +20,9 @@ export function SerIndividual() {
             setLoading(false);
         }
     };
-
     const formatFecha = (fecha) => {
         const date = new Date(fecha);
-        return date.toISOString().split('T')[0]; // Devuelve solo la parte de la fecha
+        return date.toISOString().split('T')[0];
     };
 
     useEffect(() => {
@@ -50,29 +48,24 @@ export function SerIndividual() {
                             alt={serie.nombre}
                             loading="lazy"
                             className="poster-image"
-                            style={{ width: '650px', height: 'auto' }} // Ajusta el tamaño aquí
+                            style={{ width: '650px', height: 'auto' }}
                         />
                     </figure>
-
                     <header className="info-header">
                         <h1 itemProp="name">{serie.nombre}</h1>
                     </header>
-
                     <div className="descripción" itemProp="description">
                         <p>{serie.descripcion}</p>
                     </div>
-
                     <div className="autores">
                         <p><strong>Directores:</strong> <span itemProp="director">{serie.director}</span></p>
                         <p><strong>Reparto:</strong> <span itemProp="actor">{serie.autores}</span></p>
                     </div>
-
                     <div className="info-adicional">
                         <p><strong>Género:</strong> <span>{serie.genero_nombre}</span></p>
                         <p><strong>Duración:</strong> <span>{serie.duracion}</span></p>
                         <p><strong>Fecha de publicación:</strong> <span itemProp="datePublished">{formatFecha(serie.fecha_publicacion)}</span></p>
                     </div>
-
                 </article>
             </div>
         </Fragment>

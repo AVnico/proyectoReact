@@ -3,7 +3,6 @@ import '../../a.css';
 import { useNavigate } from "react-router-dom";
 
 export function ListGeneros() {
-    // Lista de géneros y URLs correspondientes
     const genres = [
         { name: 'Acción', url: '/genero/Acción' },
         { name: 'Animación', url: '/genero/Animación' },
@@ -13,7 +12,6 @@ export function ListGeneros() {
         { name: 'Ciencia Ficción', url: '/genero/Ciencia Ficción' },
         { name: 'Comedia', url: '/genero/Comedia' }
     ];
-    
     const navigate = useNavigate();
 
     const handleGenreClick = (url) => {

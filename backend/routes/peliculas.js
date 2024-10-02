@@ -7,7 +7,7 @@ const pool = require('../database');
 router.get('/', async (req, res) => {
     try {
         const [result] = await pool.query('SELECT * FROM peliculas');
-        res.json(result);  // Devolver los datos como JSON
+        res.json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error al obtener las películas" });
@@ -23,16 +23,16 @@ router.get('/:id', async (req, res) => {
             FROM peliculas p
             LEFT JOIN generos g ON p.genero_id = g.id
             WHERE p.id = ?`, [id]);
-        
         if (result.length === 0) {
             return res.status(404).json({ message: "Película no encontrada" });
         }
-        res.json(result[0]);  // Devolver los datos de la película como JSON
+        res.json(result[0]);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error al obtener la película" });
     }
 });
+
 router.get('/genero/:genero', async (req, res) => {
     try {
         const { genero } = req.params;
@@ -41,11 +41,9 @@ router.get('/genero/:genero', async (req, res) => {
             FROM peliculas p
             LEFT JOIN generos g ON p.genero_id = g.id
             WHERE g.nombre = ?`, [genero]);
-
         if (result.length === 0) {
             return res.status(404).json({ message: "No se encontraron películas para este género" });
         }
-
         res.json(result);
     } catch (error) {
         console.error(error);
@@ -65,7 +63,6 @@ router.get('/buscar/:nombre', async (req, res) => {
         if (result.length === 0) {
             return res.status(404).json({ message: "No se encontraron películas con ese nombre" });
         }
-
         res.json(result);
     } catch (error) {
         console.error(error);

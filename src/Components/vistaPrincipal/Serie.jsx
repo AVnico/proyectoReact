@@ -12,11 +12,9 @@ export function Serie({ serie }) {
                 <div className="card-body">
                     <p className="card-text">{serie.descripcion}</p>
                 </div>
-                <button 
-                    className="btn btn-success" 
-                    onClick={() => navigate(`/serie/${serie.id}`)}
-                >
-                    Ver
+                <button
+                    className="btn btn-success"
+                    onClick={() => navigate(`/serie/${serie.id}`)}> Ver
                 </button>
             </div>
         </Fragment>

@@ -3,15 +3,11 @@ import { useParams } from "react-router-dom";
 import '../../comentarios.css';
 
 export function Comentarios() {
-    const { id } = useParams(); // Obtener el ID de la película de la URL
+    const { id } = useParams();
     const [valoracion, setValoracion] = useState('');
     const [comentario, setComentario] = useState('');
     const [comentarios, setComentarios] = useState([]);
-
-    // Obtener el usuario_id del localStorage
-    const usuario_id = localStorage.getItem('usuario_id'); // Asegúrate de que esto esté definido al iniciar sesión
-
-    // Obtener los comentarios de la película al cargar el componente
+    const usuario_id = localStorage.getItem('usuario_id');
     useEffect(() => {
         fetch(`http://localhost:5000/api/comentarios/${id}`)
             .then(res => {
@@ -23,11 +19,8 @@ export function Comentarios() {
             .then(data => setComentarios(data))
             .catch(error => console.error('Error al obtener comentarios:', error));
     }, [id]);
-
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Enviar nuevo comentario al backend
         fetch('http://localhost:5000/api/comentarios', {
             method: 'POST',
             headers: {
@@ -40,26 +33,26 @@ export function Comentarios() {
                 descripcion: comentario
             })
         })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error('Error en el servidor');
-            }
-            return res.json();
-        })
-        .then(data => {
-            console.log('Comentario enviado:', data);
-            setComentarios(prevComentarios => [
-                ...prevComentarios,
-                {
-                    nombre_usuario: 'Tú',
-                    valoracion: valoracion,
-                    descripcion: comentario
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Error en el servidor');
                 }
-            ]);
-            setValoracion('');
-            setComentario('');
-        })
-        .catch(error => console.error('Error al enviar comentario:', error));
+                return res.json();
+            })
+            .then(data => {
+                console.log('Comentario enviado:', data);
+                setComentarios(prevComentarios => [
+                    ...prevComentarios,
+                    {
+                        nombre_usuario: 'Tú',
+                        valoracion: valoracion,
+                        descripcion: comentario
+                    }
+                ]);
+                setValoracion('');
+                setComentario('');
+            })
+            .catch(error => console.error('Error al enviar comentario:', error));
     };
 
     return (
@@ -69,9 +62,7 @@ export function Comentarios() {
                 <div className="container-fluid mt-3">
                     <div className="row">
                         <div className="col">
-                            {/* Contenedor de comentarios con desplazamiento */}
                             <div className="comentarios-container">
-                                {/* Comentarios existentes */}
                                 {comentarios.length > 0 ? (
                                     comentarios.map((comentario, index) => (
                                         <div key={index} className="row mb-4 p-3 border rounded shadow-sm bg-light">
@@ -80,12 +71,9 @@ export function Comentarios() {
                                             <p>{comentario.descripcion}</p>
                                         </div>
                                     ))
-                                ) : (
-                                    <p>No hay comentarios aún.</p>
+                                ) : (<p>No hay comentarios aún.</p>
                                 )}
                             </div>
-
-                            {/* Caja de comentario nueva */}
                             <div className="row mt-4">
                                 <form onSubmit={handleSubmit} className="w-100">
                                     <div className="form-group">
@@ -101,7 +89,6 @@ export function Comentarios() {
                                             required
                                         />
                                     </div>
-
                                     <div className="form-group mt-3">
                                         <label htmlFor="comentario">Escribe tu comentario</label>
                                         <textarea
@@ -110,12 +97,12 @@ export function Comentarios() {
                                             rows="4"
                                             value={comentario}
                                             onChange={(e) => setComentario(e.target.value)}
-                                            required
-                                        ></textarea>
+                                            required>
+                                        </textarea>
                                     </div>
-
-                                    <button type="submit" className="btn btn-primary mt-3">
-                                        Comentar
+                                    <button
+                                        type="submit"
+                                        className="btn btn-primary mt-3">Comentar
                                     </button>
                                 </form>
                             </div>
