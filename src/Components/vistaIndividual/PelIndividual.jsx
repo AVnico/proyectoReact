@@ -71,20 +71,26 @@ export function PelIndividual() {
         </div>
       </div>
       <div className="video-container mb-3" style={styles.videoContainer}>
-        <div className="top-bar" style={styles.topBar}>
-          <button style={styles.button}>
-            Español Latino <span style={styles.quality}>CALIDAD HD</span>
-          </button>
-          <button style={styles.button}>
-            Descargar <span style={styles.quality}>CALIDAD HD</span>
-          </button>
-        </div>
-        <div className="video-player" style={styles.videoPlayer}>
-          <div className="play-button" style={styles.playButton}>
-            <span style={styles.playIcon}>▶</span>
-          </div>
-        </div>
-      </div>
+  <div className="top-bar" style={styles.topBar}>
+  <a href="https://drive.google.com/drive/folders/1mHv2Bjvprullh6cw_Y-wouOor8WTMd59" style={{ textDecoration: 'none' }}>
+  <button style={styles.button}>
+    Descargar <span style={styles.quality}></span>
+  </button>
+</a>
+
+  </div>
+  <div className="video-player" style={styles.videoPlayer}>
+    <iframe
+      width="100%"
+      height="100%"
+      src={`https://www.youtube.com/embed/KRCkGtDcVkw`}
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  </div>
+</div>
     </Fragment>
   );
 }

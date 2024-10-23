@@ -42,7 +42,7 @@ export function Login() {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Username"
+                                placeholder="Nombre de usuario"
                                 aria-label="Username"
                                 value={correo}
                                 onChange={(e) => setCorreo(e.target.value)}
