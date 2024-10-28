@@ -5,6 +5,7 @@ export function PelIndividual() {
   const { id } = useParams();
   const [pelicula, setPelicula] = useState(null);
   const [loading, setLoading] = useState(true);
+
   const fetchPelicula = async () => {
     try {
       console.log("ID de película:", id);
@@ -20,6 +21,7 @@ export function PelIndividual() {
       setLoading(false);
     }
   };
+
   const formatFecha = (fecha) => {
     const date = new Date(fecha);
     return date.toISOString().split('T')[0];
@@ -71,29 +73,29 @@ export function PelIndividual() {
         </div>
       </div>
       <div className="video-container mb-3" style={styles.videoContainer}>
-  <div className="top-bar" style={styles.topBar}>
-  <a href="https://drive.google.com/drive/folders/1mHv2Bjvprullh6cw_Y-wouOor8WTMd59" style={{ textDecoration: 'none' }}>
-  <button style={styles.button}>
-    Descargar <span style={styles.quality}></span>
-  </button>
-</a>
-
-  </div>
-  <div className="video-player" style={styles.videoPlayer}>
-    <iframe
-      width="100%"
-      height="100%"
-      src={`https://www.youtube.com/embed/KRCkGtDcVkw`}
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-    ></iframe>
-  </div>
-</div>
+        <div className="top-bar" style={styles.topBar}>
+          <a href="https://drive.google.com/drive/folders/1mHv2Bjvprullh6cw_Y-wouOor8WTMd59" style={{ textDecoration: 'none' }}>
+            <button style={styles.button}>
+              Descargar <span style={styles.quality}></span>
+            </button>
+          </a>
+        </div>
+        <div className="video-player" style={styles.videoPlayer}>
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${pelicula.url_trailer}`}
+            title={`${pelicula.nombre} Trailer`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </div>
     </Fragment>
   );
 }
+
 const styles = {
   videoContainer: {
     backgroundColor: "#1c1e21",
@@ -134,7 +136,7 @@ const styles = {
   videoPlayer: {
     width: "100%",
     height: "500px",
-    backgroundColor: "#000000", 
+    backgroundColor: "#000000",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
