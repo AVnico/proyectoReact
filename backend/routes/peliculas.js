@@ -6,7 +6,7 @@ const pool = require('../database');
 // Endpoint para obtener todas las películas
 router.get('/', async (req, res) => {
     try {
-        const [result] = await pool.query('SELECT * FROM peliculas');
+        const [result] = await pool.query('SELECT *, url_trailer FROM peliculas');
         res.json(result);
     } catch (error) {
         console.error(error);
@@ -19,10 +19,11 @@ router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const [result] = await pool.query(`
-            SELECT p.*, g.nombre AS genero_nombre 
+            SELECT p.*, g.nombre AS genero_nombre, p.url_trailer 
             FROM peliculas p
             LEFT JOIN generos g ON p.genero_id = g.id
-            WHERE p.id = ?`, [id]);
+            WHERE p.id = ?
+        `, [id]);
         if (result.length === 0) {
             return res.status(404).json({ message: "Película no encontrada" });
         }
@@ -32,6 +33,7 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: "Error al obtener la película" });
     }
 });
+
 
 router.get('/genero/:genero', async (req, res) => {
     try {
