@@ -1,11 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../../a.css';
+import '../Usuarios/log.css';
+import { FaUser, FaLock } from 'react-icons/fa';
 
 export function Login() {
     const navigate = useNavigate();
     const [correo, setCorreo] = useState('');
     const [contraseña, setContraseña] = useState('');
+    const [error, setError] = useState('');
+
     const handleLogin = async () => {
         const res = await fetch('http://localhost:5000/api/autenticacion/login', {
             method: 'POST',
@@ -19,52 +22,51 @@ export function Login() {
         });
         const data = await res.json();
         if (res.ok) {
-            console.log('Token recibido:', data.token);
             localStorage.setItem('token', data.token);
             localStorage.setItem('usuario_id', data.usuario_id);
             navigate("/peliculas");
         } else {
-            console.log('Error:', data.error);
+            setError(data.error || 'Error al iniciar sesión. Inténtalo de nuevo.');
         }
     };
+
     const goToRegister = () => {
         navigate("/register");
     };
 
     return (
         <Fragment>
-            <div className="login d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-                <div className="container text-center">
-                    <header><h1 className="text-light">Bienvenido a CUEVANA</h1></header>
-                    <h3 className="text-light mt-4" style={{ padding: 20 }}>Por favor, inicie sesión</h3>
-                    <div className="row justify-content-center" style={{ padding: 10 }}>
-                        <div className="col-auto">
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Nombre de usuario"
-                                aria-label="Username"
-                                value={correo}
-                                onChange={(e) => setCorreo(e.target.value)}
-                            />
-                        </div>
+            <div className="login-page">
+                <div className="login-container">
+                    <h2 className="login-title">Bienvenido a CUEVANA</h2>
+                    <p className="login-subtitle">Tu portal de películas</p>
+
+                    {error && <div className="error-message">{error}</div>}
+
+                    <div className="input-group">
+                        <span className="input-icon"><FaUser /></span>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Nombre de usuario"
+                            value={correo}
+                            onChange={(e) => setCorreo(e.target.value)}
+                        />
                     </div>
-                    <div className="row justify-content-center" style={{ padding: 10 }}>
-                        <div className="col-auto">
-                            <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Contraseña"
-                                aria-label="Password"
-                                value={contraseña}
-                                onChange={(e) => setContraseña(e.target.value)}
-                            />
-                        </div>
+
+                    <div className="input-group">
+                        <span className="input-icon"><FaLock /></span>
+                        <input
+                            type="password"
+                            className="form-control"
+                            placeholder="Contraseña"
+                            value={contraseña}
+                            onChange={(e) => setContraseña(e.target.value)}
+                        />
                     </div>
-                    <button className="btn btn-primary mt-3" onClick={handleLogin}>Iniciar sesión</button>
-                    <div className="mt-3">
-                        <button className="btn btn-success" onClick={goToRegister}>Registrarse</button>
-                    </div>
+
+                    <button className="login-button" onClick={handleLogin}>Iniciar sesión</button>
+                    <button className="register-button" onClick={goToRegister}>Registrarse</button>
                 </div>
             </div>
         </Fragment>

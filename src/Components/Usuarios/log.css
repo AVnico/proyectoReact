@@ -1,0 +1,103 @@
+.login-background {
+    background: linear-gradient(135deg, #10444d, #206e77, #f39240);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(16, 68, 77, 0.85); /* Capa de color oscuro con opacidad */
+    z-index: 1;
+}
+
+/* Contenedor principal */
+.login-container {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1); /* Fondo transparente */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Título y subtítulo */
+.login-title {
+    color: #f39240;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Mensaje de error */
+.error-message {
+    color: #ff4d4f;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Grupo de entrada */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.input-icon {
+    color: #f39240;
+    margin-right: 0.5rem;
+}
+
+.form-control {
+    border: none;
+    outline: none;
+    flex: 1;
+    background: transparent;
+    color: white;
+}
+
+/* Botones */
+.login-button, .register-button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.login-button {
+    background-color: #10444d;
+}
+
+.login-button:hover {
+    background-color: #083238;
+}
+
+.register-button {
+    background-color: #f39240;
+}
+
+.register-button:hover {
+    background-color: #e58135;
+}

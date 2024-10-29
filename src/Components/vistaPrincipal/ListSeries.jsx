@@ -26,7 +26,6 @@ export function ListSeries() {
                             <div class="sidebar">
                                 <h2 className="text-center">Nuevos Estrenos</h2>
                                 <Calendario />
-                                <ListGeneros />
                             </div>
                         </div>
                         <div class="col">

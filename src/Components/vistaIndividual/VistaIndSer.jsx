@@ -17,7 +17,7 @@ export function VistaIndSer() {
                             <div className="sidebar">
                                 <h2 className="text-center">Nuevos Estrenos</h2>
                                 <Calendario />
-                                <ListGeneros />
+        
                             </div>
                         </div>
                         <div className="col"> 

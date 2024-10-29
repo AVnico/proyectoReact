@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../../a.css';
+import '../Usuarios/reg.css';
 
 export function Register() {
     const navigate = useNavigate();
@@ -118,7 +118,7 @@ export function Register() {
                         <div>
                             <button
                                 className="btn btn-danger w-100 mt-2"
-                                onClick={() => navigate('/peliculas')}
+                                onClick={() => navigate('/login')}
                             >Salir
                             </button>
                         </div>

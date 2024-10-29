@@ -37,8 +37,9 @@ export function ListGeneros() {
         <Fragment>
             <div className="filters-container">
                 <h2 className="filters-title text-blue text-center">Filtrar por</h2>
-                
-                <Accordion title="Autores">
+                <div class="container">
+                <div class="row">
+                    <div class="col"> <Accordion title="Autores">
                     {filters.autores.map((autor, index) => (
                         <li key={index} className="filter-item">
                             <label className="filter-checkbox">
@@ -50,9 +51,8 @@ export function ListGeneros() {
                             </label>
                         </li>
                     ))}
-                </Accordion>
-
-                <Accordion title="Directores">
+                </Accordion></div>
+                    <div class="col"> <Accordion title="Directores">
                     {filters.directores.map((director, index) => (
                         <li key={index} className="filter-item">
                             <label className="filter-checkbox">
@@ -64,9 +64,8 @@ export function ListGeneros() {
                             </label>
                         </li>
                     ))}
-                </Accordion>
-
-                <Accordion title="Producciones">
+                </Accordion></div>
+                    <div class="col"><Accordion title="Producciones">
                     {filters.producciones.map((produccion, index) => (
                         <li key={index} className="filter-item">
                             <label className="filter-checkbox">
@@ -78,9 +77,8 @@ export function ListGeneros() {
                             </label>
                         </li>
                     ))}
-                </Accordion>
-
-                <Accordion title="Géneros">
+                </Accordion></div>
+                    <div class="col"> <Accordion title="Géneros">
                     {filters.generos.map((genero, index) => (
                         <li key={index} className="filter-item">
                             <label className="filter-checkbox">
@@ -93,8 +91,8 @@ export function ListGeneros() {
                         </li>
                     ))}
                 </Accordion>
-
-                <Accordion title="Años">
+                </div>
+                    <div class="col"><Accordion title="Años">
                     {filters.anios.map((anio, index) => (
                         <li key={index} className="filter-item">
                             <label className="filter-checkbox">
@@ -106,7 +104,9 @@ export function ListGeneros() {
                             </label>
                         </li>
                     ))}
-                </Accordion>
+                </Accordion></div>
+                </div>
+            </div>
             </div>
         </Fragment>
     );

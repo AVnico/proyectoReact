@@ -34,12 +34,15 @@ export function PeliculasPorGenero() {
                         <div class="col-2">
                             <div class="sidebar">
                                 <Calendario />
-                                <ListGeneros />
+            
                             </div>
                         </div>
                         <div class="col">
                             <div className="estrenos-headera">
                                 <h1>{genero}</h1>
+                            </div>
+                            <div>
+                                <ListGeneros />
                             </div>
                             <div className="peliculas-container">
                                 {error && <p>{error}</p>}

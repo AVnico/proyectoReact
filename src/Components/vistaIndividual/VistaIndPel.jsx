@@ -16,7 +16,7 @@ export function VistaIndPel() {
                         <div className="col-2">
                             <div className="sidebar mt-3 " >
                                 <Calendario />
-                                <ListGeneros />
+
                             </div>
                         </div>
                         <div className="col mt-4">

@@ -26,7 +26,6 @@ export function Lista() {
                         <div class="col-2">
                             <div class="sidebar">
                                 <Calendario />
-                                <ListGeneros />
                             </div>
                         </div>
                         <div class="col">
@@ -34,6 +33,7 @@ export function Lista() {
                                 <h1>BIENVENIDO A CUEVANA20</h1>
                                 <p>Las mejores series y películas que no te puedes perder...</p>
                             </div>
+                            <div><ListGeneros></ListGeneros></div>
                             <div className="peliculas-container">
                                 {peliculas.map((pelicula) => (
                                     <div className="pelicula-card" key={pelicula.id}>

@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Calendar from "react-calendar";
-import '../../a.css';
+import '../Busqueda/calendar.css';
 
 export function Calendario() {
   const [value, setValue] = useState(new Date());

@@ -22,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("/public/103134-wall-e.jpg");
+    background: linear-gradient(135deg, #10444d, #206e77, #f39240);
     background-color: transparent;
 }
 

@@ -26,7 +26,7 @@ export function ListEstrenos() {
                             <div class="sidebar">
                                 <h2 className="text-center">Nuevos Estrenos</h2>
                                 <Calendario />
-                                <ListGeneros />
+                                
                             </div>
                         </div>
                         <div class = "col">
@@ -34,6 +34,7 @@ export function ListEstrenos() {
                             <h1>Próximos Estrenos</h1>
                             <p>Las mejores series y películas que no te puedes perder</p>
                         </div>
+                        <div><ListGeneros /></div>
                         <div className="estrenos-container">
                             {estrenos.map((estreno) => (
                                 <div className="estreno-card" key={estreno.id}>
