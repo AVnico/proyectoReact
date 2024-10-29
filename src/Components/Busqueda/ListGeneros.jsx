@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import '../../a.css';
+import '../Busqueda/filtro.css';
 import { useNavigate } from "react-router-dom";
 
 export function ListGeneros() {
@@ -11,23 +11,21 @@ export function ListGeneros() {
             'Margot Robbie', 'Ryan Gosling', 'America Ferrera', 'Cillian Murphy', 
             'Emily Blunt', 'Matt Damon', 'Tom Cruise', 'Rebecca Ferguson',
             'Simon Pegg', 'Chris Pratt', 'Zoe Saldaña', 'Dave Bautista'
-            // Agrega el resto de autores aquí
         ],
         directores: [
             'Greta Gerwig', 'Christopher Nolan', 'Christopher McQuarrie', 'James Gunn',
             'Joaquim Dos Santos', 'Kemp Powers', 'Kelsey Mann', 'Adam Wingard'
-            // Agrega el resto de directores aquí
         ],
         producciones: [
             'Warner Bros. Pictures', 'Universal Pictures', 'Paramount Pictures',
             'Marvel Studios', 'Sony Pictures Animation', 'Pixar Animation Studios'
-            // Agrega el resto de producciones aquí
+            
         ],
         generos: [
             'Acción', 'Animación', 'Anime', 'Aventura', 'Drama', 'Ciencia Ficción', 'Comedia'
-            // Agrega más géneros aquí si lo deseas
+            
         ],
-        anios: ['2024', '2023', '2022'] // Puedes agregar más años aquí
+        anios: ['2024', '2023', '2022'] 
     };
 
     const handleFilterClick = (category, filter) => {
