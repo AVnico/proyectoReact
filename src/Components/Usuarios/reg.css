@@ -1,5 +1,5 @@
 /* Fondo de página con degradado */
-.register, .login {
+.register {
     background: linear-gradient(135deg, #10444d, #206e77, #f39240);
     min-height: 100vh;
     display: flex;

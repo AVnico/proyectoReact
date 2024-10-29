@@ -1,46 +1,35 @@
-.login-background {
+/* Fondo de página con degradado */
+.login-page {
     background: linear-gradient(135deg, #10444d, #206e77, #f39240);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.login-page::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(16, 68, 77, 0.85); /* Capa de color oscuro con opacidad */
-    z-index: 1;
-}
 
-/* Contenedor principal */
+/* Contenedor principal del login */
 .login-container {
-    position: relative;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.1); /* Fondo transparente */
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2); /* Fondo blanco con transparencia */
     border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     padding: 2rem;
-    max-width: 400px;
-    width: 100%;
+    width: 400px;
+    max-width: 90%;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 /* Título y subtítulo */
 .login-title {
-    color: #f39240;
-    font-size: 2rem;
+    color: #ee9726;
+    font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
 .login-subtitle {
-    color: #ccc;
-    font-size: 1.1rem;
+    color: #000000;
     margin-bottom: 1.5rem;
+    font-size: 1rem;
 }
 
 /* Mensaje de error */
@@ -50,7 +39,7 @@
     font-size: 0.9rem;
 }
 
-/* Grupo de entrada */
+/* Grupo de entradas con iconos */
 .input-group {
     display: flex;
     align-items: center;
@@ -61,8 +50,9 @@
 }
 
 .input-icon {
-    color: #f39240;
+    color: #ee9726;
     margin-right: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .form-control {
@@ -70,7 +60,7 @@
     outline: none;
     flex: 1;
     background: transparent;
-    color: white;
+    color: #10444d;
 }
 
 /* Botones */
@@ -83,7 +73,7 @@
     cursor: pointer;
     transition: background 0.3s ease;
     color: white;
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .login-button {
