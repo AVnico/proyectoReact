@@ -57,11 +57,35 @@
     position: fixed;
 }
 
+.calendar-bubble {
+    position: absolute;
+    top: 100%; /* Para aparecer justo debajo del elemento */
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 10;
+    width: 400px; /* Más ancho */
+    max-height: 400px; /* Ajusta la altura si es necesario */
+    overflow-y: auto;
+}
+
+.calendar-bubble::before {
+    content: '';
+    position: absolute;
+    top: -10px; /* Ajusta según sea necesario */
+    left: 20px; /* Ajusta para centrar la flecha */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent rgba(255, 255, 255, 0.9) transparent; /* Flecha semi-transparente */
+}
+
 /* Navbar */
 
 /* Navbar con fondo transparente */
 .navbar {
-    background-color: rgba(198, 218, 236, 0);
+    background-color: (123, 181, 231, 0);
     color: var(--sidebar-text-color);
     text-align: center;
     font-size: 18px;

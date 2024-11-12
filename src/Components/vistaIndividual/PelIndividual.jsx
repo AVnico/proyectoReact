@@ -54,7 +54,7 @@ export function PelIndividual() {
                 src={pelicula.imagen_url}
                 loading="lazy"
                 className="poster-image"
-                style={{ width: '650px', height: 'auto' }}
+                style={{ width: '800px', height: 'auto' }}
               />
             </figure>
             <div className="descripción" itemProp="description">

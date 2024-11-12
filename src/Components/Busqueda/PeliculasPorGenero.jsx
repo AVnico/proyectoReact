@@ -31,12 +31,7 @@ export function PeliculasPorGenero() {
                 <div className="container-fluid ">
                     <HeaderG />
                     <div class="row " >
-                        <div class="col-2">
-                            <div class="sidebar">
-                                <Calendario />
-            
-                            </div>
-                        </div>
+                       
                         <div class="col">
                             <div className="estrenos-headera">
                                 <h1>{genero}</h1>

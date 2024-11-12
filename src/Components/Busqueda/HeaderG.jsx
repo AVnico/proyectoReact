@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaSearch, FaUser, FaFilm, FaBell, FaSignOutAlt } from 'react-icons/fa';
+import { FaSearch, FaUser, FaFilm, FaBell, FaSignOutAlt, FaCalendarAlt, FaTools } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { Calendario } from "./Calendario";
 import '../../a.css';
 
 export function HeaderG() {
@@ -11,9 +12,13 @@ export function HeaderG() {
     ]);
     const navigate = useNavigate();
     const [mostrarNotificaciones, setMostrarNotificaciones] = useState(false);
+    const [mostrarCalendario, setMostrarCalendario] = useState(false);
     const toggleNotificaciones = () => {
         setMostrarNotificaciones(!mostrarNotificaciones);
-    }; 
+    };
+    const toggleCalendario = () => {
+        setMostrarCalendario(!mostrarCalendario);
+    };
     const [searchTerm, setSearchTerm] = useState("");
     const [resultados, setResultados] = useState([]);
 
@@ -47,9 +52,7 @@ export function HeaderG() {
         <Fragment>
             <div className="navbar d-flex justify-content-between navbar-transparent align-items-center ml-2 mb-4">
                 <div className="navbar-brand-left d-flex align-items-center">
-                    <Link className="navbar-brand" to="/peliculas">
-                        <FaFilm size={32} color="#ffffff" />
-                    </Link>
+                    {/* Aquí se podría agregar un logotipo si es necesario */}
                 </div>
                 <div className="navbar-center d-flex justify-content-center">
                     <ul className="navbar-nav d-flex flex-row">
@@ -58,6 +61,16 @@ export function HeaderG() {
                         </li>
                         <li className="nav-item mx-3">
                             <Link className="nav-link large-text" to="/estrenos">Recomendaciones</Link>
+                        </li>
+                        <li className="nav-item mx-3 position-relative">
+                            <span className="nav-link large-text cursor-pointer" onClick={toggleCalendario}>
+                                Calendario <FaCalendarAlt size={16} />
+                            </span>
+                            {mostrarCalendario && (
+                                <div className="calendar-bubble">
+                                    <Calendario />
+                                </div>
+                            )}
                         </li>
                     </ul>
                 </div>
@@ -69,7 +82,7 @@ export function HeaderG() {
                             placeholder="Buscar"
                             aria-label="Search"
                             value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)} 
+                            onChange={(e) => setSearchTerm(e.target.value)}
                         />
                         <button className="btn btn-transparent" type="submit">
                             <FaSearch size={20} color="#ffffff" />
@@ -109,12 +122,16 @@ export function HeaderG() {
                             </div>
                         )}
                     </div>
-                    <Link to="/user" className="nav-link ml-5">
-                        <FaUser size={28} color="#ffffff" /></Link>
+                    <Link to="/user" className="nav-link ml-3">
+                        <FaUser size={28} color="#ffffff" />
+                    </Link>
+                    <Link to="/panelAdmin" className="nav-link ml-3">
+                        <FaTools size={28} color="#ffffff" title="Administración" />
+                    </Link>
                     <FaSignOutAlt
                         size={28}
                         color="#ffffff"
-                        className="cursor-pointer ml-5"
+                        className="cursor-pointer ml-3"
                         onClick={() => navigate('/login')}
                     />
                 </div>

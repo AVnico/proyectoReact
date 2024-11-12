@@ -12,8 +12,9 @@ import { Register } from "./Components/Usuarios/Register";
 import { PanelUsuario } from "./Components/Usuarios/PanelUsuario";
 import { Comentarios } from "./Components/vistaIndividual/Comentarios";
 import { PeliculasPorGenero } from "./Components/Busqueda/PeliculasPorGenero";
-
 import { Recomendaciones } from "./Components/Usuarios/Recomendaciones";
+import { VistaParental } from "./Components/Usuarios/VistaParental";
+import { PanelAdministracion } from "./Components/PanelAdmin/PanelAdministracion";
 export function App() {
     return (
         <Fragment>
@@ -49,8 +50,14 @@ export function App() {
                 {/* Ruta para el panel de comentarios */}
                 <Route path="/pelicula/:id/comentarios" element={<Comentarios />} />
 
+                {/* Ruta para Control Parental*/}
+                <Route path="/panelAdmin" element={<PanelAdministracion />} />
+
                 {/* Ruta para el panel del usuario */}
                 <Route path="/user" element={<PanelUsuario />} />
+
+                {/* Ruta para Control Parental*/}
+                <Route path="/controlParental" element={<VistaParental />} />
 
                 {/* Redirigir a login si no se encuentra la ruta */}
                 <Route path="*" element={<Navigate to="/login" />} />
