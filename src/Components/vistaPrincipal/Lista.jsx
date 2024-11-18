@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Pelicula } from "./Pelicula";
 import { HeaderG } from "../Busqueda/HeaderG";
 import { ListGeneros } from "../Busqueda/ListGeneros";
-import { Calendario } from "../Busqueda/Calendario";
+
 import "../../Lista.css";
 
 

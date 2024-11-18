@@ -5,7 +5,7 @@ import { Login } from "./Components/Usuarios/Login";
 import { Lista } from "./Components/vistaPrincipal/Lista";
 import { ListSeries } from "./Components/vistaPrincipal/ListSeries";
 import { ListEstrenos } from "./Components/vistaPrincipal/ListEstrenos";
-import { VistaPrincipal } from "./Components/vistaPrincipal/VistaPrincipal";
+import { VistaPrincipal } from "./Components/vistaPrincipal/vistaPrincipal";
 import { VistaIndPel } from "./Components/vistaIndividual/VistaIndPel";
 import { VistaIndSer } from "./Components/vistaIndividual/VistaIndSer";
 import { Register } from "./Components/Usuarios/Register";
