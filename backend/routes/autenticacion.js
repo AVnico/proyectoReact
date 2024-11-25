@@ -69,6 +69,31 @@ enrutador.get('/generos', async (req, res) => {
     res.status(500).json({ message: 'Error al obtener los géneros' });
   }
 });
+// Ruta para verificar la contraseña parental
+enrutador.post('/controlparental', async (req, res) => {
+  const { usuario_id, contrasena } = req.body;
+
+  
+  try {
+      // Realiza la consulta para obtener el usuario por ID
+      const [filas] = await db.query('SELECT contrasenaparental FROM usuarios WHERE id = ?', [usuario_id]);
+      // Verifica si el usuario fue encontrado
+      if (filas.length === 0) {
+          return res.status(404).json({ error: 'Usuario no encontrado.' });
+      }
+
+      const cont = filas[0].contrasenaparental;
+      // Compara la contraseña ingresada con la almacenada (en texto plano)
+      if (String(cont) === String(contrasena)) {
+        return res.status(200).json({ message: 'Acceso concedido al contenido para adultos.' });
+    } else {
+        return res.status(401).json({ error: 'Contraseña parental incorrecta servidor.' });
+    }
+  } catch (error) {
+      console.error('Error al verificar la contraseña parental:', error);
+      return res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
 
 
 module.exports = enrutador;

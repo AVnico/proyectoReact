@@ -24,7 +24,7 @@ export function Login() {
         if (res.ok) {
             localStorage.setItem('token', data.token);
             localStorage.setItem('usuario_id', data.usuario_id);
-            navigate("/peliculas");
+            navigate("/controlParental");
         } else {
             setError(data.error || 'Error al iniciar sesión. Inténtalo de nuevo.');
         }
