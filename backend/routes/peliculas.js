@@ -106,4 +106,41 @@ router.get('/buscar/:nombre', async (req, res) => {
         res.status(500).json({ message: "Error al buscar las películas por nombre" });
     }
 });
+
+
+// Crear o actualizar una película
+// Crear o editar película
+router.post('/editarpel', async (req, res) => {
+    const { id, nombre, autores, director, duracion, genero_id, imagen_url } = req.body;
+
+    try {
+        if (id) {
+            // Si hay un ID, actualizamos la película existente
+            const [result] = await pool.query(
+                `UPDATE peliculas 
+                SET nombre = ?, autores = ?, director = ?, duracion = ?, genero_id = ?, imagen_url = ? 
+                WHERE id = ?`,
+                [nombre, autores, director, duracion, genero_id, imagen_url, id]
+            );
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: 'Película no encontrada para actualizar' });
+            }
+
+            return res.status(200).json({ message: 'Película actualizada correctamente' });
+        } else {
+            // Si no hay un ID, creamos una nueva película
+            const [result] = await pool.query(
+                `INSERT INTO peliculas (nombre, autores, director, duracion, genero_id, imagen_url) 
+                VALUES (?, ?, ?, ?, ?, ?)`,
+                [nombre, autores, director, duracion, genero_id, imagen_url]
+            );
+
+            return res.status(201).json({ message: 'Película creada correctamente', id: result.insertId });
+        }
+    } catch (error) {
+        console.error('Error al guardar la película:', error);
+        res.status(500).json({ message: 'Error al guardar la película' });
+    }
+});
 module.exports = router;

@@ -13,7 +13,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("/public/103134-wall-e.jpg");
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -27,7 +26,6 @@
 }
 
 .login {
-    background-image: url("/public/login.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

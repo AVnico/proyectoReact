@@ -72,6 +72,9 @@ export function HeaderG() {
                                 </div>
                             )}
                         </li>
+                        <li className="nav-item mx-3">
+                            <Link className="nav-link large-text" to="/series">Series</Link>
+                        </li>
                     </ul>
                 </div>
 

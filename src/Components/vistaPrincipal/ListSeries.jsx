@@ -22,12 +22,6 @@ export function ListSeries() {
                 <div className="container-fluid">
                     <HeaderG />
                     <div class="row">
-                        <div class="col-2">
-                            <div class="sidebar">
-                                <h2 className="text-center">Nuevos Estrenos</h2>
-                                <Calendario />
-                            </div>
-                        </div>
                         <div class="col">
                             <div className="peliculas-container">
                                 {series.map((serie) => (

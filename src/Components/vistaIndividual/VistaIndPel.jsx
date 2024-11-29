@@ -1,8 +1,7 @@
 import React from "react";
 import { Fragment } from "react";
 import { HeaderG } from "../Busqueda/HeaderG";
-import { Calendario } from "../Busqueda/Calendario";
-import { ListGeneros } from "../Busqueda/ListGeneros";
+
 import { PelIndividual } from "./PelIndividual";
 import { Comentarios } from "./Comentarios";
 

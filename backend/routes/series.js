@@ -53,4 +53,57 @@ router.get('/genero/:genero', async (req, res) => {
     }
 });
 
+// Endpoint para obtener temporadas de una serie
+router.get('/:id/temporadas', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [result] = await pool.query(
+            'SELECT id, numero_temporada, descripcion FROM temporadas WHERE serie_id = ?',
+            [id]
+        );
+        res.json(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al obtener las temporadas" });
+    }
+});
+
+// Endpoint para obtener capítulos de una temporada
+router.get('/temporadas/:id/capitulos', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [result] = await pool.query(
+            'SELECT numero_capitulo, titulo, duracion FROM capitulos WHERE temporada_id = ?',
+            [id]
+        );
+        res.json(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al obtener los capítulos" });
+    }
+});
+
+router.get('/capitulos/:id', async (req, res) => {
+    const { id } = req.params;
+    console.log("ID recibido:", id); // Log para depuración
+
+    try {
+        const [result] = await pool.query(
+            'SELECT numero_capitulo, titulo, duracion FROM capitulos WHERE id = ?',
+            [id]
+        );
+
+        if (result.length === 0) {
+            return res.status(404).json({ message: "Capítulo no encontrado" });
+        }
+
+        res.json(result[0]); // Devuelve el capítulo encontrado
+    } catch (error) {
+        console.error("Error al obtener el capítulo:", error);
+        res.status(500).json({ message: "Error al obtener el capítulo" });
+    }
+});
+
+
+
 module.exports = router;

@@ -15,6 +15,8 @@ import { PeliculasPorGenero } from "./Components/Busqueda/PeliculasPorGenero";
 import { Recomendaciones } from "./Components/Usuarios/Recomendaciones";
 import { VistaParental } from "./Components/Usuarios/VistaParental";
 import { PanelAdministracion } from "./Components/PanelAdmin/PanelAdministracion";
+import { CapituloIndividual } from "./Components/vistaIndividual/CapituloIndividual";
+
 export function App() {
     return (
         <Fragment>
@@ -61,14 +63,8 @@ export function App() {
 
                 {/* Redirigir a login si no se encuentra la ruta */}
                 <Route path="*" element={<Navigate to="/login" />} />
-
-
-
-
-
-
-
-
+                
+                <Route path="/capitulos/:id" element={<CapituloIndividual />} />
 
                 <Route path="/recomendaciones" element={<Recomendaciones />} />
             </Routes>
