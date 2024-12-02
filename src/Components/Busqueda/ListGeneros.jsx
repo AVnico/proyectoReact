@@ -1,35 +1,134 @@
-import React, { Fragment } from "react";
-import '../../a.css';
+import React, { Fragment, useState } from "react";
+import '../Busqueda/filtro.css';
 import { useNavigate } from "react-router-dom";
 
 export function ListGeneros() {
-    // Lista de géneros y URLs correspondientes
-    const genres = [
-        { name: 'Accion', url: '/accion' },
-        { name: 'Animacion', url: '/animacion' },
-        { name: 'Anime', url: '/anime' },
-        { name: 'Aventura', url: '/aventura' },
-        { name: 'Drama', url: '/drama' },
-        { name: 'Ciencia Ficcion', url: '/ciencia-ficcion' },
-        { name: 'Comedia', url: '/comedia' }
- 
-    ];
+    const [selectedFilters, setSelectedFilters] = useState([]);
     const navigate = useNavigate();
+
+    const filters = {
+        autores: [
+            'Margot Robbie', 'Ryan Gosling', 'America Ferrera', 'Cillian Murphy', 
+            'Emily Blunt', 'Matt Damon', 'Tom Cruise', 'Rebecca Ferguson',
+            'Simon Pegg', 'Chris Pratt', 'Zoe Saldaña', 'Dave Bautista'
+        ],
+        directores: [
+            'Greta Gerwig', 'Christopher Nolan', 'Christopher McQuarrie', 'James Gunn',
+            'Joaquim Dos Santos', 'Kemp Powers', 'Kelsey Mann', 'Adam Wingard'
+        ],
+        producciones: [
+            'Warner Bros. Pictures', 'Universal Pictures', 'Paramount Pictures',
+            'Marvel Studios', 'Sony Pictures Animation', 'Pixar Animation Studios'
+            
+        ],
+        generos: [
+            'Acción', 'Animación', 'Anime', 'Aventura', 'Drama', 'Ciencia Ficción', 'Comedia'
+            
+        ],
+        anios: ['2024', '2023', '2022'] 
+    };
+
+    const handleFilterClick = (category, filter) => {
+        const url = `/${category}/${filter}`;
+        navigate(url);
+    };
+
     return (
         <Fragment>
-            <div className="generos-container">
-                <h2 className="generos-title text-primary text-center">GÉNEROS</h2>
-                <ul className="generos-list">
-                    {genres.map((genre, index) => (
-                        <li key={index} className="generos-item text-center">
-                            <a href={genre.url} className="generos-link ">
-                                {genre.name}
-                            </a>
+            <div className="filters-container">
+                <h2 className="filters-title text-blue text-center">Filtrar por</h2>
+                <div class="container">
+                <div class="row">
+                    <div class="col"> <Accordion title="Autores">
+                    {filters.autores.map((autor, index) => (
+                        <li key={index} className="filter-item">
+                            <label className="filter-checkbox">
+                                <input
+                                    type="checkbox"
+                                    onChange={() => handleFilterClick('autor', autor)}
+                                />
+                                {autor}
+                            </label>
                         </li>
                     ))}
-                </ul>
+                </Accordion></div>
+                    <div class="col"> <Accordion title="Directores">
+                    {filters.directores.map((director, index) => (
+                        <li key={index} className="filter-item">
+                            <label className="filter-checkbox">
+                                <input
+                                    type="checkbox"
+                                    onChange={() => handleFilterClick('director', director)}
+                                />
+                                {director}
+                            </label>
+                        </li>
+                    ))}
+                </Accordion></div>
+                    <div class="col"><Accordion title="Producciones">
+                    {filters.producciones.map((produccion, index) => (
+                        <li key={index} className="filter-item">
+                            <label className="filter-checkbox">
+                                <input
+                                    type="checkbox"
+                                    onChange={() => handleFilterClick('produccion', produccion)}
+                                />
+                                {produccion}
+                            </label>
+                        </li>
+                    ))}
+                </Accordion></div>
+                    <div class="col"> <Accordion title="Géneros">
+                    {filters.generos.map((genero, index) => (
+                        <li key={index} className="filter-item">
+                            <label className="filter-checkbox">
+                                <input
+                                    type="checkbox"
+                                    onChange={() => handleFilterClick('genero', genero)}
+                                />
+                                {genero}
+                            </label>
+                        </li>
+                    ))}
+                </Accordion>
+                </div>
+                    <div class="col"><Accordion title="Años">
+                    {filters.anios.map((anio, index) => (
+                        <li key={index} className="filter-item">
+                            <label className="filter-checkbox">
+                                <input
+                                    type="checkbox"
+                                    onChange={() => handleFilterClick('anio', anio)}
+                                />
+                                {anio}
+                            </label>
+                        </li>
+                    ))}
+                </Accordion></div>
+                </div>
             </div>
-           
+            </div>
         </Fragment>
+    );
+}
+
+function Accordion({ title, children }) {
+    const [isOpen, setIsOpen] = useState(false);
+    
+    const toggleAccordion = () => {
+        setIsOpen(!isOpen);
+    };
+
+    return (
+        <div className="accordion">
+            <button className="accordion-button" onClick={toggleAccordion}>
+                {title} 
+            </button>
+            {isOpen && (
+                <ul className="accordion-content">
+                    {children}
+                </ul>
+            )}
+        </div>
     );
 }

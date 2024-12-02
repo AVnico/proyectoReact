@@ -1,94 +1,177 @@
 /* Definir colores principales */
 :root {
-    
-    --main-bg-color: transparent;  
-    --header-bg-color: transparent; 
-    --sidebar-bg-color: transparent; 
-    --highlight-color: transparent; 
-    --hover-color: transparent;    
+
+    --main-bg-color: transparent;
+    --header-bg-color: transparent;
+    --sidebar-bg-color: transparent;
+    --highlight-color: transparent;
+    --hover-color: transparent;
 }
-.register{
-    min-height: 100vh; /* Ocupa al menos toda la altura de la ventana */
+
+.register {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image:url("/public/103134-wall-e.jpg") ;
-    background-color: rgba(0, 0, 0, 0.5); /* Color negro con 50% de transparencia */
+    background-color: rgba(0, 0, 0, 0.5);
 }
-.user-panel{
-    min-height: 100vh; /* Ocupa al menos toda la altura de la ventana */
+
+.user-panel {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image:url("/public/103134-wall-e.jpg") ;
-    background-color: transparent; /* Color negro con 50% de transparencia */
+    background: linear-gradient(135deg, #10444d, #206e77, #f39240);
+    background-color: transparent;
 }
 
 .login {
-    background-image: url("/public/login.jpg"); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh; 
-    width: 100%; 
-    display: flex; 
-    flex-direction: column;
-    justify-content: space-between;
-}
-/*  vista principal */
-.vista {
-    background-image: url("/public/asdasdasd.png"); /* La imagen de fondo */
-    background-color: var(--main-bg-color); /* Color de fondo si no carga la imagen */
-    background-repeat: no-repeat; /* No repetir la imagen */
-    background-attachment: fixed; /* Mantener la imagen fija al hacer scroll */
-    background-size: cover; /* Ajustar la imagen al tamaño de la pantalla */
-    background-position: center; /* Centrar la imagen de fondo */
-    min-height: 100vh; /* Ocupa al menos el alto de la pantalla */
-    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.coment{
+
+/*  vista principal */
+.vista {
+    background-image: url("/public/Diseño sin título.jpg");
+    background-color: var(--main-bg-color);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.coment {
     position: fixed;
 }
+
+.calendar-bubble {
+    position: absolute;
+    top: 100%; /* Para aparecer justo debajo del elemento */
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 10;
+    width: 400px; /* Más ancho */
+    max-height: 400px; /* Ajusta la altura si es necesario */
+    overflow-y: auto;
+}
+
+.calendar-bubble::before {
+    content: '';
+    position: absolute;
+    top: -10px; /* Ajusta según sea necesario */
+    left: 20px; /* Ajusta para centrar la flecha */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent rgba(255, 255, 255, 0.9) transparent; /* Flecha semi-transparente */
+}
+
 /* Navbar */
+
 /* Navbar con fondo transparente */
 .navbar {
-    background-color: rgba(198, 218, 236, 0); /* Color oscuro con 85% de opacidad */
+    background-color: (123, 181, 231, 0);
     color: var(--sidebar-text-color);
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-
     width: 100%;
     z-index: 1000;
-    padding: 15px 20px; /* Un solo padding */
-    top: 0; /* Para asegurarte de que se quede en la parte superior */
-
+    padding: 15px 20px;
+    top: 0;
 }
 
+/* Título de las opciones en el navbar */
+.navbar-center .nav-link.large-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s;
+}
 
+/* Iconos de usuario y notificaciones con más espacio entre ellos */
+.navbar-right .cursor-pointer {
+    cursor: pointer;
+    margin-left: 25px;
+}
+
+/* Icono de notificación con círculo rojo */
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    ;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+/* Menú desplegable de notificaciones */
+.notification-menu {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    width: 250px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.notification-menu ul {
+    padding: 10px;
+    margin: 0;
+}
+
+.notification-item {
+    padding: 10px;
+    margin-left: 25px;
+    border-bottom: 1px solid #f1f1f1;
+    cursor: pointer;
+}
+
+.notification-item:hover {
+    background-color: #f1f1f1;
+}
 
 /* Sidebar transparente */
 .sidebar {
-    background-color: rgba(198, 218, 236, 0); /* Color oscuro con 85% de opacidad */
+    background-color: rgba(198, 218, 236, 0);
     padding: 20px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    color: var(--sidebar-text-color); 
+    color: var(--sidebar-text-color);
     position: fixed;
     top: 0;
     left: 0;
-    width: 300px; /* Ajusta según el ancho que desees */
-    height: 100%; /* Para que ocupe todo el alto de la ventana */
-    padding-top: 60px; /* Espacio superior para que no cubra el navbar */
-    z-index: 999; /* Asegúrate de que esté debajo del navbar */
-
+    width: 300px;
+    height: 100%;
+    padding-top: 60px;
+    z-index: 999;
 }
-
 
 /*  calendario  */
 .calendar-container {
@@ -140,14 +223,14 @@
 }
 
 .generos-link {
-    color: var(--sidebar-text-color); 
+    color: var(--sidebar-text-color);
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s;
 }
 
 .generos-link:hover {
-    color: var(--hover-color); 
+    color: var(--hover-color);
 }
 
 /* Contenido principal (centrado en la vista principal) */
@@ -155,7 +238,7 @@
     flex-grow: 1;
     padding: 20px;
     background-color: var(--main-bg-color);
-    color: #333; /* Texto oscuro */
+    color: #333;
 }
 
 .register {
@@ -170,14 +253,14 @@
 /*Calendario*/
 .calendar-container {
     position: relative;
-  }
-  
-  .highlight {
+}
+
+.highlight {
     background-color: rgb(255, 0, 0);
     border-radius: 20%;
-  }
-  
-  .event-bubble {
+}
+
+.event-bubble {
     position: absolute;
     background-color: rgba(6, 26, 209, 0.8);
     color: rgba(250, 250, 250, 0.658);
@@ -187,9 +270,9 @@
     z-index: 1000;
     transform: translate(-50%, -100%);
     white-space: nowrap;
-  }
-  
-  .event-bubble::after {
+}
+
+.event-bubble::after {
     content: "";
     position: absolute;
     bottom: -8px;
@@ -198,10 +281,9 @@
     border-width: 8px;
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
-  }
-  
-  
-  /* Círculo rojo para las notificaciones */
+}
+
+/* Círculo rojo para las notificaciones */
 .notification-badge {
     position: absolute;
     top: -5px;
@@ -250,3 +332,221 @@
     cursor: pointer;
 }
 
+/* Contenedor de géneros */
+.generos-container {
+    padding: 20px;
+    text-align: center;
+    background-color: transparent;
+}
+
+/* Título de la lista de géneros */
+.generos-title {
+    font-size: 2rem;
+    color: #0004ff;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Lista de géneros */
+.generos-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Estilo de cada ítem de la lista */
+.generos-item {
+    flex: 1 1 auto;
+}
+
+/* Estilo de los géneros como texto */
+.generos-link {
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Efecto hover: subrayado y cambio de color */
+.generos-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* Adaptar a pantallas más pequeñas */
+@media (max-width: 768px) {
+    .generos-link {
+        font-size: 1.2rem;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;500;700&display=swap');
+
+/* Contenedor principal para los estrenos */
+.estrenos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    padding: 40px;
+    background-color: #f0f0f0;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sección del título principal */
+.estrenos-headera {
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(to right, #1553ff, #00b7ff); 
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Título principal con una fuente moderna y elegante */
+.estrenos-headera h1 {
+    font-size: 3.5em;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    background: -webkit-linear-gradient(45deg, #fffb00, #ffd901);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.estrenos-headera p {
+    font-size: 1.4em;
+    color: #f5f5f5;
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0;
+}
+
+/* Estilo para cada tarjeta de película/serie */
+.estreno-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.estreno-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Imagen dentro de cada tarjeta */
+.estreno-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom: 4px solid #22a8e6;
+}
+
+/* Contenido de la tarjeta */
+.card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Título de la película/serie */
+.card-body h3 {
+    font-size: 1.8em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Descripción de la película/serie */
+.card-body p {
+    font-size: 1em;
+    color: #7f8c8d;
+    flex-grow: 1;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Botón atractivo */
+.btn-serie {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-serie:hover {
+    background-color: #c0392b;
+    transform: scale(1.1);
+}
+
+/* Etiqueta de 'Estreno Próximo' */
+.estreno-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #12f3f3;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.9em;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.form-inline {
+    position: relative;
+}
+
+.search-results {
+    position: absolute;
+    border: 1px transparent;
+    border-radius: 8px;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    left: 0;
+    top: 100%;
+}
+
+.search-results ul {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.search-results ul:hover {
+    background-color: #f1f1f1;
+}

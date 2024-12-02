@@ -1,4 +1,3 @@
-// routes/estrenos.js
 const express = require('express');
 const router = express.Router();
 const pool = require('../database');
@@ -7,7 +6,7 @@ const pool = require('../database');
 router.get('/', async (req, res) => {
     try {
         const [result] = await pool.query('SELECT * FROM estrenos');
-        res.json(result);  // Devolver los datos como JSON
+        res.json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error al obtener las estrenos" });
@@ -23,11 +22,10 @@ router.get('/:id', async (req, res) => {
             FROM estrenos p
             LEFT JOIN generos g ON p.genero_id = g.id
             WHERE p.id = ?`, [id]);
-        
         if (result.length === 0) {
             return res.status(404).json({ message: "estrenos no encontrada" });
         }
-        res.json(result[0]);  // Devolver los datos de la estreno como JSON
+        res.json(result[0]);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error al obtener la estrenos" });
@@ -43,11 +41,10 @@ router.get('/genero/:genero', async (req, res) => {
             FROM estrenos p
             LEFT JOIN generos g ON p.genero_id = g.id
             WHERE g.nombre = ?`, [genero]);
-        
         if (result.length === 0) {
             return res.status(404).json({ message: "No se encontraron estrenos para este género" });
         }
-        res.json(result);  // Devolver las estrenos del género como JSON
+        res.json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error al obtener las estrenos por género" });

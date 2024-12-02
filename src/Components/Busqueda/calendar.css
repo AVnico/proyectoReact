@@ -1,0 +1,111 @@
+/* Contenedor del calendario */
+.calendar-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: black; /* Cambiamos el color del texto a negro */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin: 1rem;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Título */
+.calendar-container h2 {
+    color: #f3da3b; /* Amarillo similar al del título "BIENVENIDO A CUEVANA20" */
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Calendario */
+.react-calendar {
+    background: transparent;
+    border: none;
+    width: 100%;
+    color: #000; /* Texto en negro */
+}
+
+.react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.react-calendar__navigation button {
+    color: #f39240; /* Naranja claro */
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.react-calendar__navigation button:hover {
+    color: #e58135;
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: #f39240; /* Naranja para fines de semana */
+}
+
+/* Días del calendario */
+.react-calendar__tile {
+    background: transparent;
+    color: #000; /* Letras en negro */
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px; /* Ajusta el tamaño para números dobles */
+    width: 40px; /* Tamaño cuadrado uniforme */
+}
+
+/* Hover y selección */
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    background: rgba(255, 255, 255, 0.2);
+    color: #f3da3b; /* Amarillo claro */
+}
+
+/* Días resaltados con eventos como cuadrado */
+.highlight {
+    background: #10444d;
+    color: #f3da3b;
+    border-radius: 4px; /* Cuadrado en lugar de círculo */
+}
+
+.react-calendar__tile--active {
+    background: #f39240;
+    color: black;
+    border-radius: 4px; /* Cuadrado en lugar de círculo */
+}
+
+/* Burbuja de eventos */
+.event-bubble {
+    position: absolute;
+    background: rgba(16, 68, 77, 0.95); /* Fondo semi-opaco */
+    color: #f3da3b;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, -100%);
+    z-index: 10;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Animación para burbuja de evento */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -80%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -100%);
+    }
+}

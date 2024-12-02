@@ -2,46 +2,42 @@ import React from 'react';
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { HeaderG } from '../Busqueda/HeaderG';
-import '../../a.css';  // Puedes ajustar tu archivo de estilos
+import '../../a.css';
 
 export function VistaPrincipal() {
     const navigate = useNavigate();
+
     return (
         <Fragment>
             <HeaderG></HeaderG>
-        <div className="homepage" style={styles.page}>
-            {/* Encabezado con el logo y el nombre */}
-            <header className="text-center mb-5">
-                <img
-                    src="NewLogo.png"
-                    alt="logo"
-                    style={styles.logo}
-                />
-                <h1 style={styles.title}>Mi Sitio de Películas Favorito</h1>
-            </header>
-
-
-            {/* Botón de acceso */}
-            <div className="text-center mb-5">
-                <button style={styles.mainButton} onClick={() => navigate('/peliculas')}>Entrar</button>
-            </div>
-
-            {/* Sección de información */}
-            <section style={styles.infoSection} className="text-center">
-                <div className="info-content">
-                    <h2 style={styles.sectionTitle}>Todas las películas en un solo lugar</h2>
-                    <p style={styles.sectionText}>
-                        Disfruta de una experiencia única viendo tus películas y series favoritas online.
-                        Nuestro sitio ofrece un catálogo variado que podrás disfrutar sin interrupciones.
-                    </p>
+            <div className="homepage" style={styles.page}>
+                <header className="text-center mb-5">
+                    <img
+                        src="NewLogo.png"
+                        alt="logo"
+                        style={styles.logo}
+                    />
+                    <h1 style={styles.title}>Mi Sitio de Películas Favorito</h1>
+                </header>
+                <div className="text-center mb-5">
+                    <button
+                        style={styles.mainButton}
+                        onClick={() => navigate('/peliculas')}>Entrar
+                    </button>
                 </div>
-            </section>
-        </div>
+                <section style={styles.infoSection} className="text-center">
+                    <div className="info-content">
+                        <h2 style={styles.sectionTitle}>Todas las películas en un solo lugar</h2>
+                        <p style={styles.sectionText}>
+                            Disfruta de una experiencia única viendo tus películas y series favoritas online.
+                            Nuestro sitio ofrece un catálogo variado que podrás disfrutar sin interrupciones.
+                        </p>
+                    </div>
+                </section>
+            </div>
         </Fragment>
-        
     );
 }
-
 
 const styles = {
 

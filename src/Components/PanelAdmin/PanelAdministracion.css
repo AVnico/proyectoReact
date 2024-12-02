@@ -1,0 +1,124 @@
+.admin-panel {
+    display: flex;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+}
+
+.sidebar {
+    width: 25%; /* Ajusta este valor para cambiar el tamaño de la barra lateral */
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    overflow-y: auto; /* Para manejar contenido largo */
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+li:hover {
+    transform: scale(1.02);
+}
+
+li button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+li button:hover {
+    background-color: #0056b3;
+}
+
+.add-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.add-button:hover {
+    background-color: #218838;
+}
+
+.details-panel {
+    flex: 1; /* Ocupa el resto del espacio disponible */
+    padding: 20px;
+    overflow-y: auto; /* Permite scroll si el contenido es muy grande */
+    background-color: #ffffff; /* Fondo blanco */
+    border-left: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-form {
+    max-width: 500px; /* Limita el ancho del formulario */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin: 0 auto; /* Centra el formulario */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.save-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.save-button:hover {
+    background-color: #0056b3;
+}
+
+.no-selection {
+    margin-top: 20px;
+    color: #666;
+    text-align: center;
+}
