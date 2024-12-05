@@ -1,9 +1,15 @@
 import React, { Fragment, useState } from "react";
-import '../Busqueda/filtro.css';
 import { useNavigate } from "react-router-dom";
+import './filtro.css'
 
 export function ListGeneros() {
-    const [selectedFilters, setSelectedFilters] = useState([]);
+    const [selectedFilters, setSelectedFilters] = useState({
+        autores: [],
+        directores: [],
+        producciones: [],
+        generos: [],
+        anios: [],
+    });
     const navigate = useNavigate();
 
     const filters = {
@@ -19,116 +25,70 @@ export function ListGeneros() {
         producciones: [
             'Warner Bros. Pictures', 'Universal Pictures', 'Paramount Pictures',
             'Marvel Studios', 'Sony Pictures Animation', 'Pixar Animation Studios'
-            
         ],
         generos: [
             'Acción', 'Animación', 'Anime', 'Aventura', 'Drama', 'Ciencia Ficción', 'Comedia'
-            
         ],
         anios: ['2024', '2023', '2022'] 
     };
 
-    const handleFilterClick = (category, filter) => {
-        const url = `/${category}/${filter}`;
-        navigate(url);
+    const handleFilterChange = (category, filter) => {
+        setSelectedFilters((prevFilters) => {
+            const updatedFilters = { ...prevFilters };
+            if (updatedFilters[category].includes(filter)) {
+                updatedFilters[category] = updatedFilters[category].filter((item) => item !== filter);
+            } else {
+                updatedFilters[category] = [...updatedFilters[category], filter];
+            }
+            return updatedFilters;
+        });
+    };
+
+    const applyFilters = () => {
+        const queryParams = Object.entries(selectedFilters)
+            .filter(([_, values]) => values.length > 0)
+            .map(([key, values]) => `${key}=${encodeURIComponent(values.join(','))}`)
+            .join('&');
+    
+        // Navegar a la ruta que renderiza PeliculasPorGenero con los parámetros
+        navigate(`/search?${queryParams}`);
+    };
+
+    const clearFilters = () => {
+        setSelectedFilters({
+            autores: [],
+            directores: [],
+            producciones: [],
+            generos: [],
+            anios: []
+        });
+        navigate(`/peliculas`); // Navegar a la vista original de todas las películas
     };
 
     return (
         <Fragment>
             <div className="filters-container">
-                <h2 className="filters-title text-blue text-center">Filtrar por</h2>
-                <div class="container">
-                <div class="row">
-                    <div class="col"> <Accordion title="Autores">
-                    {filters.autores.map((autor, index) => (
-                        <li key={index} className="filter-item">
-                            <label className="filter-checkbox">
+                <h2 className="filters-title">Filtrar por</h2>
+                {Object.keys(filters).map((category) => (
+                    <div key={category}>
+                        <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+                        {filters[category].map((filter, index) => (
+                            <label key={index}>
                                 <input
                                     type="checkbox"
-                                    onChange={() => handleFilterClick('autor', autor)}
+                                    checked={selectedFilters[category].includes(filter)}
+                                    onChange={() => handleFilterChange(category, filter)}
                                 />
-                                {autor}
+                                {filter}
                             </label>
-                        </li>
-                    ))}
-                </Accordion></div>
-                    <div class="col"> <Accordion title="Directores">
-                    {filters.directores.map((director, index) => (
-                        <li key={index} className="filter-item">
-                            <label className="filter-checkbox">
-                                <input
-                                    type="checkbox"
-                                    onChange={() => handleFilterClick('director', director)}
-                                />
-                                {director}
-                            </label>
-                        </li>
-                    ))}
-                </Accordion></div>
-                    <div class="col"><Accordion title="Producciones">
-                    {filters.producciones.map((produccion, index) => (
-                        <li key={index} className="filter-item">
-                            <label className="filter-checkbox">
-                                <input
-                                    type="checkbox"
-                                    onChange={() => handleFilterClick('produccion', produccion)}
-                                />
-                                {produccion}
-                            </label>
-                        </li>
-                    ))}
-                </Accordion></div>
-                    <div class="col"> <Accordion title="Géneros">
-                    {filters.generos.map((genero, index) => (
-                        <li key={index} className="filter-item">
-                            <label className="filter-checkbox">
-                                <input
-                                    type="checkbox"
-                                    onChange={() => handleFilterClick('genero', genero)}
-                                />
-                                {genero}
-                            </label>
-                        </li>
-                    ))}
-                </Accordion>
+                        ))}
+                    </div>
+                ))}
+                <div className="filter-buttons">
+                    <button onClick={applyFilters}>Aplicar Filtros</button>
+                    <button onClick={clearFilters}>Limpiar Filtros</button>
                 </div>
-                    <div class="col"><Accordion title="Años">
-                    {filters.anios.map((anio, index) => (
-                        <li key={index} className="filter-item">
-                            <label className="filter-checkbox">
-                                <input
-                                    type="checkbox"
-                                    onChange={() => handleFilterClick('anio', anio)}
-                                />
-                                {anio}
-                            </label>
-                        </li>
-                    ))}
-                </Accordion></div>
-                </div>
-            </div>
             </div>
         </Fragment>
-    );
-}
-
-function Accordion({ title, children }) {
-    const [isOpen, setIsOpen] = useState(false);
-    
-    const toggleAccordion = () => {
-        setIsOpen(!isOpen);
-    };
-
-    return (
-        <div className="accordion">
-            <button className="accordion-button" onClick={toggleAccordion}>
-                {title} 
-            </button>
-            {isOpen && (
-                <ul className="accordion-content">
-                    {children}
-                </ul>
-            )}
-        </div>
     );
 }

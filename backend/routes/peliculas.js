@@ -35,24 +35,6 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.get('/genero/:genero', async (req, res) => {
-    try {
-        const { genero } = req.params;
-        const [result] = await pool.query(`
-            SELECT p.*, g.nombre AS genero_nombre 
-            FROM peliculas p
-            LEFT JOIN generos g ON p.genero_id = g.id
-            WHERE g.nombre = ?`, [genero]);
-        if (result.length === 0) {
-            return res.status(404).json({ message: "No se encontraron películas para este género" });
-        }
-        res.json(result);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error al obtener las películas por género" });
-    }
-});
-
 router.get('/recomendaciones/:id', async (req, res) => {
     const { id } = req.params; // El id del usuario viene de los parámetros
 
@@ -143,4 +125,46 @@ router.post('/editarpel', async (req, res) => {
         res.status(500).json({ message: 'Error al guardar la película' });
     }
 });
+
+// Endpoint para filtrar películas
+router.post('/filtrar', async (req, res) => {
+    const { year, name, author, production, genres, director } = req.body;
+
+    try {
+        let query = `SELECT p.*, g.nombre AS genero_nombre FROM peliculas p LEFT JOIN generos g ON p.genero_id = g.id WHERE 1=1`;
+        const params = [];
+
+        if (year) {
+            query += ` AND YEAR(p.fecha_publicacion) = ?`;
+            params.push(year);
+        }
+        if (name) {
+            query += ` AND p.nombre LIKE ?`;
+            params.push(`%${name}%`);
+        }
+        if (author) {
+            query += ` AND p.autores LIKE ?`;
+            params.push(`%${author}%`);
+        }
+        if (production) {
+            query += ` AND p.produccion LIKE ?`;
+            params.push(`%${production}%`);
+        }
+        if (genres && genres.length > 0) {
+            query += ` AND p.genero_id IN (?)`;
+            params.push(genres);
+        }
+        if (director) {
+            query += ` AND p.director LIKE ?`;
+            params.push(`%${director}%`);
+        }
+
+        const [result] = await pool.query(query, params);
+        res.json(result);
+    } catch (error) {
+        console.error('Error al filtrar las películas:', error);
+        res.status(500).json({ message: 'Error al filtrar las películas' });
+    }
+});
+
 module.exports = router;

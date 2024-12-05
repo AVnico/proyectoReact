@@ -16,6 +16,7 @@ import { Recomendaciones } from "./Components/Usuarios/Recomendaciones";
 import { VistaParental } from "./Components/Usuarios/VistaParental";
 import { PanelAdministracion } from "./Components/PanelAdmin/PanelAdministracion";
 import { CapituloIndividual } from "./Components/vistaIndividual/CapituloIndividual";
+import { Favoritos } from "./Components/vistaPrincipal/Favoritos";
 
 export function App() {
     return (
@@ -66,7 +67,12 @@ export function App() {
                 
                 <Route path="/capitulos/:id" element={<CapituloIndividual />} />
 
+                <Route path="/filtrar" element={<PeliculasPorGenero />} />
+
                 <Route path="/recomendaciones" element={<Recomendaciones />} />
+
+                <Route path="/favoritos/:uid" element={<Favoritos />} />
+
             </Routes>
         </Fragment>
     );

@@ -75,6 +75,9 @@ export function HeaderG() {
                         <li className="nav-item mx-3">
                             <Link className="nav-link large-text" to="/series">Series</Link>
                         </li>
+                        <li className="nav-item mx-3">
+                            <Link className="nav-link large-text" to="/favoritos">Favoritos</Link>
+                        </li>
                     </ul>
                 </div>
 
@@ -102,6 +105,7 @@ export function HeaderG() {
                                 ))}
                             </ul>
                         )}
+                       
                     </form>
                     <div className="position-relative ml-3">
                         <FaBell
