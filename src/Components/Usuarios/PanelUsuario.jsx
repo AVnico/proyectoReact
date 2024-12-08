@@ -1,10 +1,11 @@
 import React, { useState, Fragment } from "react";
-import '../../a.css';
+
 import { useNavigate } from "react-router-dom";
 
 export function PanelUsuario() {
-    const [nombre, setNombre] = useState("Usuario Actual");
+    const [nombre, setNombre] = useState("Usuario Actual2");
     const [contraseña, setContraseña] = useState('');
+    const [contrasenaParental, setContrasenaParental] = useState(''); // Nuevo estado para contraseña parental
     const [showPass, setShowPass] = useState(false);
     const [generos, setGeneros] = useState({
         Accion: false,
@@ -16,16 +17,21 @@ export function PanelUsuario() {
         Comedia: false,
         Fantasia: false,
     });
+
     const togglePassword = () => setShowPass(!showPass);
+
     const handleGeneroChange = (genero) => {
         setGeneros({ ...generos, [genero]: !generos[genero] });
     };
+
     const handleSaveChanges = () => {
         console.log("Nombre:", nombre);
         console.log("Contraseña:", contraseña);
+        console.log("Contraseña Parental:", contrasenaParental); // Imprimir la contraseña parental
         console.log("Géneros favoritos:", generos);
         alert("Cambios guardados exitosamente");
     };
+
     const navigate = useNavigate();
 
     return (
@@ -63,6 +69,17 @@ export function PanelUsuario() {
                                 </button>
                             </div>
                         </div>
+                        <div className="form-group mb-2">
+                            <label htmlFor="parentalPassword">Contraseña Parental</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="parentalPassword"
+                                placeholder="Contraseña Parental"
+                                value={contrasenaParental}
+                                onChange={(e) => setContrasenaParental(e.target.value)}
+                            />
+                        </div>
                         <div className="form-group mb-3">
                             <label>Géneros favoritos</label>
                             <div className="d-flex flex-wrap">
@@ -84,9 +101,16 @@ export function PanelUsuario() {
                         </div>
                         <button
                             className="btn btn-primary w-100 mt-3"
-                            onClick={handleSaveChanges}>                            Guardar Cambios
+                            onClick={handleSaveChanges}
+                        >
+                            Guardar Cambios
                         </button>
-                        <div><button className="btn btn-danger w-100 mt-2" onClick={() => navigate('/peliculas')}>Salir</button></div>
+                        <button
+                            className="btn btn-danger w-100 mt-2"
+                            onClick={() => navigate('/peliculas')}
+                        >
+                            Salir
+                        </button>
                     </div>
                 </div>
             </div>

@@ -11,19 +11,17 @@ export function Pelicula({ pelicula }) {
 
     const handleAddToFavorites = async () => {
         if (!usuario_id) {
-            alert('Debes iniciar sesión para agregar a favoritos.');
+            alert('Debes iniciar sesión para eliminar de favoritos.');
             return;
         }
 
         try {
-            await axios.post(`http://localhost:5000/api/autenticacion/favoritos`, {
-                pelicula_id: pelicula.id, 
-                usuario_id: usuario_id,
-            });
-            alert('Película añadida a favoritos');
+            await axios.delete(`http://localhost:5000/api/autenticacion/favoritos?usuario_id=${usuario_id}&pelicula_id=${pelicula.id}`);
+            alert('Película eliminada de favoritos');
+            window.location.reload(); // Recargar la página después de eliminar
         } catch (error) {
-            console.error('Error al añadir a favoritos:', error);
-            alert('Error al añadir a favoritos');
+            console.error('Error al eliminar de favoritos:', error);
+            alert('Error al eliminar favoritos');
         }
     };
 
@@ -46,7 +44,7 @@ export function Pelicula({ pelicula }) {
                 <button
                     className="btn-serie btn-warning ml-2"
                     onClick={handleAddToFavorites}>
-                    Añadir a Favoritos
+                    Eliminar Favoritos
                 </button>
             </div>
         </Fragment>

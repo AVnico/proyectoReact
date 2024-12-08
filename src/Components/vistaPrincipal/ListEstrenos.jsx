@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Fragment } from "react";
 import { Estreno } from "./Estreno";
 import { HeaderG } from "../Busqueda/HeaderG";
-import { ListGeneros } from "../Busqueda/ListGeneros";
-import { Calendario } from "../Busqueda/Calendario";
+
 import "../../ListEstrenos.css";
 
 export function ListEstrenos() {
@@ -28,7 +27,7 @@ export function ListEstrenos() {
                             <h1>Próximos Estrenos</h1>
                             <p>Las mejores series y películas que no te puedes perder</p>
                         </div>
-                        <div><ListGeneros /></div>
+
                         <div className="estrenos-container">
                             {estrenos.map((estreno) => (
                                 <div className="estreno-card" key={estreno.id}>

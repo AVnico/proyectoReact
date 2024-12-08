@@ -42,18 +42,35 @@
     box-shadow: 0 0 0 0.2rem rgba(16, 68, 77, 0.25);
 }
 
+/* Contenedor para alinear el input y el botón de mostrar contraseña */
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem; /* Espaciado entre input y botón */
+}
+
+.input-group .form-control {
+    flex: 1; /* Asegura que el input ocupe el espacio disponible */
+}
+
+.input-group .btn-outline-secondary {
+    margin-left: 0; /* Ajuste del margen */
+    white-space: nowrap; /* Asegura que el texto no se corte */
+}
+
 /* Botón de mostrar/ocultar contraseña */
 .btn-outline-secondary {
-   
-    color: #5f96a0;
+    color: white;
+    background-color: #5f96a0;
     border-color: #5f96a0;
-    background-color: transparent;
     transition: background-color 0.3s ease;
+    padding: 0.4rem 0.8rem;
 }
 
 .btn-outline-secondary:hover {
-    color: white;
-    background-color: #5f96a0;
+    background-color: #083238;
+    border-color: #083238;
 }
 
 /* Botón de registro y login */
@@ -85,10 +102,21 @@
 /* Géneros favoritos */
 .form-check {
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center; /* Alinea el checkbox con el texto */
+    gap: 0.5rem; /* Espaciado entre checkbox y texto */
+}
+
+.form-check-group {
+    display: grid; /* Cambiamos de flexbox a grid */
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+    gap: 0.5rem; /* Espaciado entre los elementos */
+    justify-items: start; /* Asegura alineación a la izquierda */
 }
 
 .form-check-input {
     accent-color: #10444d; /* Color para el checkbox */
+    transform: scale(0.9); /* Tamaño reducido del checkbox */
 }
 
 .form-check-label {

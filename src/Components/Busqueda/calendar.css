@@ -87,25 +87,27 @@
 .event-bubble {
     position: absolute;
     background: rgba(16, 68, 77, 0.95); /* Fondo semi-opaco */
-    color: #f3da3b;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transform: translate(-50%, -100%);
-    z-index: 10;
-    animation: fadeIn 0.3s ease;
+    color: #f3da3b; /* Amarillo */
+    padding: 0.7rem 1.2rem; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 0.9rem; /* Tamaño de fuente moderado */
+    white-space: nowrap; /* Evitar que el texto se corte en varias líneas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
+    transform: translate(-50%, -120%); /* Ajustar la posición vertical */
+    z-index: 100; /* Asegurar que quede encima */
+    animation: fadeIn 0.3s ease; /* Animación para entrada */
+    pointer-events: none; /* Evitar que la burbuja interfiera con el clic */
 }
 
-/* Animación para burbuja de evento */
+/* Animación de entrada */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translate(-50%, -80%);
+        transform: translate(-50%, -100%);
     }
     to {
         opacity: 1;
-        transform: translate(-50%, -100%);
+        transform: translate(-50%, -120%);
     }
 }
+

@@ -31,14 +31,12 @@ export function VistaParental() {
                     contrasena: password,
                 }),
             });
-        
-            // Verifica el contenido antes de convertir a JSON
+
             const text = await res.text();
-            console.log('Respuesta del servidor:', text);
-        
-            const data = JSON.parse(text); // Si estás seguro de que es JSON
+            const data = JSON.parse(text);
             if (res.ok) {
                 setSuccess('Acceso concedido');
+                localStorage.setItem('esInfantil', 0); // Guardar 0 para adulto
                 setTimeout(() => {
                     window.location.href = '/peliculas';
                 }, 1000);
@@ -48,14 +46,19 @@ export function VistaParental() {
         } catch (error) {
             setError('Error al verificar la contraseña parental.');
             console.error(error);
-        }};
-    
+        }
+    };
+
+    const handleChildLogin = () => {
+        localStorage.setItem('esInfantil', 1); // Guardar 1 para infantil
+        window.location.href = '/peliculas';
+    };
 
     return (
         <Fragment>
             <div className="vista-parental">
                 <div className="child-section">
-                    <button className="login-button" onClick={() => window.location.href = '/peliculas'}>
+                    <button className="login-button" onClick={handleChildLogin}>
                         Cuevana Infantil
                     </button>
                 </div>

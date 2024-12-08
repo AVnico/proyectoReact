@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaSearch, FaUser, FaFilm, FaBell, FaSignOutAlt, FaCalendarAlt, FaTools } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Calendario } from "./Calendario";
-import '../../a.css';
+import './navbar.css';
 
 export function HeaderG() {
     const [notificaciones, setNotificaciones] = useState([
@@ -13,14 +13,17 @@ export function HeaderG() {
     const navigate = useNavigate();
     const [mostrarNotificaciones, setMostrarNotificaciones] = useState(false);
     const [mostrarCalendario, setMostrarCalendario] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [resultados, setResultados] = useState([]);
+    const esInfantil = parseInt(localStorage.getItem('esInfantil'), 10) === 1; // Verificar si es infantil
+
     const toggleNotificaciones = () => {
         setMostrarNotificaciones(!mostrarNotificaciones);
     };
+
     const toggleCalendario = () => {
         setMostrarCalendario(!mostrarCalendario);
     };
-    const [searchTerm, setSearchTerm] = useState("");
-    const [resultados, setResultados] = useState([]);
 
     const handleSearch = useCallback(async (term) => {
         if (term.trim() === "") {
@@ -59,19 +62,23 @@ export function HeaderG() {
                         <li className="nav-item mx-3">
                             <Link className="nav-link large-text" to="/peliculas">Películas</Link>
                         </li>
-                        <li className="nav-item mx-3">
-                            <Link className="nav-link large-text" to="/estrenos">Recomendaciones</Link>
-                        </li>
-                        <li className="nav-item mx-3 position-relative">
-                            <span className="nav-link large-text cursor-pointer" onClick={toggleCalendario}>
-                                Calendario <FaCalendarAlt size={16} />
-                            </span>
-                            {mostrarCalendario && (
-                                <div className="calendar-bubble">
-                                    <Calendario />
-                                </div>
-                            )}
-                        </li>
+                        {!esInfantil && (
+                            <li className="nav-item mx-3">
+                                <Link className="nav-link large-text" to="/estrenos">Recomendaciones</Link>
+                            </li>
+                        )}
+                        {!esInfantil && (
+                            <li className="nav-item mx-3 position-relative">
+                                <span className="nav-link large-text cursor-pointer" onClick={toggleCalendario}>
+                                    Calendario <FaCalendarAlt size={16} />
+                                </span>
+                                {mostrarCalendario && (
+                                    <div className="calendar-bubble">
+                                        <Calendario />
+                                    </div>
+                                )}
+                            </li>
+                        )}
                         <li className="nav-item mx-3">
                             <Link className="nav-link large-text" to="/series">Series</Link>
                         </li>
@@ -105,36 +112,41 @@ export function HeaderG() {
                                 ))}
                             </ul>
                         )}
-                       
                     </form>
-                    <div className="position-relative ml-3">
-                        <FaBell
-                            size={28}
-                            color="#ffffff"
-                            className="cursor-pointer"
-                            onClick={toggleNotificaciones}
-                        />
-                        {notificaciones.length > 0 && (
-                            <span className="notification-badge">{notificaciones.length}</span>
-                        )}
-                        {mostrarNotificaciones && (
-                            <div className="notification-menu">
-                                <ul className="list-unstyled">
-                                    {notificaciones.map((notif, index) => (
-                                        <li key={index} className="notification-item">
-                                            {notif}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                    </div>
-                    <Link to="/user" className="nav-link ml-3">
-                        <FaUser size={28} color="#ffffff" />
-                    </Link>
-                    <Link to="/panelAdmin" className="nav-link ml-3">
-                        <FaTools size={28} color="#ffffff" title="Administración" />
-                    </Link>
+                    {!esInfantil && (
+                        <div className="position-relative ml-3">
+                            <FaBell
+                                size={28}
+                                color="#ffffff"
+                                className="cursor-pointer"
+                                onClick={toggleNotificaciones}
+                            />
+                            {notificaciones.length > 0 && (
+                                <span className="notification-badge">{notificaciones.length}</span>
+                            )}
+                            {mostrarNotificaciones && (
+                                <div className="notification-menu">
+                                    <ul className="list-unstyled">
+                                        {notificaciones.map((notif, index) => (
+                                            <li key={index} className="notification-item">
+                                                {notif}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                    {!esInfantil && (
+                        <Link to="/user" className="nav-link ml-3">
+                            <FaUser size={28} color="#ffffff" />
+                        </Link>
+                    )}
+                    {!esInfantil && (
+                        <Link to="/panelAdmin" className="nav-link ml-3">
+                            <FaTools size={28} color="#ffffff" title="Administración" />
+                        </Link>
+                    )}
                     <FaSignOutAlt
                         size={28}
                         color="#ffffff"

@@ -5,9 +5,9 @@ import '../Usuarios/reg.css';
 export function Register() {
     const navigate = useNavigate();
     const [showPass, setShowPass] = useState(false);
-    const switchPass = () => setShowPass(!showPass);
     const [nombreUsuario, setNombreUsuario] = useState("");
     const [contraseña, setContraseña] = useState("");
+    const [contraseñaParental, setContraseñaParental] = useState("");
     const [generosSeleccionados, setGenerosSeleccionados] = useState([]);
     const genres = [
         { id: 1, nombre: 'Acción' },
@@ -19,6 +19,7 @@ export function Register() {
         { id: 7, nombre: 'Comedia' },
         { id: 8, nombre: 'Fantasía' },
     ];
+
     const handleCheckboxChange = (generoId) => {
         setGenerosSeleccionados((prevState) =>
             prevState.includes(generoId)
@@ -26,12 +27,15 @@ export function Register() {
                 : [...prevState, generoId]
         );
     };
+
     const handleSubmit = async () => {
         const payload = {
             nombre_usuario: nombreUsuario,
             contraseña: contraseña,
+            contrasenaparental: parseInt(contraseñaParental, 10),
             generos: generosSeleccionados,
         };
+
         try {
             const res = await fetch('http://localhost:5000/api/autenticacion/registro', {
                 method: 'POST',
@@ -56,29 +60,27 @@ export function Register() {
 
     return (
         <Fragment>
-            <div className="register d-flex justify-content-center align-items-center" >
+            <div className="register d-flex justify-content-center align-items-center">
                 <div className="card p-4" style={{ width: '400px', maxWidth: '100%' }}>
                     <div className="card-body">
                         <h1 className="text-center mb-4">Registro</h1>
                         <div className="form-group mb-2">
-                            <label htmlFor="username">Nombre de Usuario</label>
+                            <label>Nombre de Usuario</label>
                             <input
                                 type="text"
                                 className="form-control"
-                                id="username"
                                 placeholder="Nombre de Usuario"
                                 value={nombreUsuario}
                                 onChange={(e) => setNombreUsuario(e.target.value)}
                                 required
                             />
                         </div>
-                        <div className="form-group mb-2">
-                            <label htmlFor="password">Contraseña</label>
+                        <div className="form-group ">
+                            <label>Contraseña</label>
                             <div className="input-group">
                                 <input
                                     type={showPass ? "text" : "password"}
                                     className="form-control"
-                                    id="password"
                                     placeholder="Contraseña"
                                     value={contraseña}
                                     onChange={(e) => setContraseña(e.target.value)}
@@ -87,11 +89,24 @@ export function Register() {
                                 <button
                                     className="btn btn-outline-secondary"
                                     type="button"
-                                    onClick={switchPass}>{showPass ? "Ocultar" : "Mostrar"}
+                                    onClick={() => setShowPass(!showPass)}
+                                >
+                                    {showPass ? "Ocultar" : "Mostrar"}
                                 </button>
                             </div>
                         </div>
                         <div className="form-group mb-2">
+                            <label>Contraseña Parental (Números)</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                placeholder="Contraseña Parental"
+                                value={contraseñaParental}
+                                onChange={(e) => setContraseñaParental(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="form-group ">
                             <label>Géneros favoritos</label>
                             <div className="d-flex flex-wrap">
                                 {genres.map((genre, index) => (
@@ -103,25 +118,19 @@ export function Register() {
                                             checked={generosSeleccionados.includes(genre.id)}
                                             onChange={() => handleCheckboxChange(genre.id)}
                                         />
-                                        <label
-                                            className="form-check-label"
-                                            htmlFor={`genre-${index}`}>{genre.nombre}
+                                        <label className="form-check-label" htmlFor={`genre-${index}`}>
+                                            {genre.nombre}
                                         </label>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        <button
-                            className="btn btn-primary w-100 mt-3"
-                            onClick={handleSubmit}>Registrarse
+                        <button className="btn btn-primary w-100 mt-3" onClick={handleSubmit}>
+                            Registrarse
                         </button>
-                        <div>
-                            <button
-                                className="btn btn-danger w-100 mt-2"
-                                onClick={() => navigate('/login')}
-                            >Salir
-                            </button>
-                        </div>
+                        <button className="btn btn-danger w-100 mt-2" onClick={() => navigate('/login')}>
+                            Salir
+                        </button>
                     </div>
                 </div>
             </div>

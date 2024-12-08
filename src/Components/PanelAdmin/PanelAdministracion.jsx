@@ -8,63 +8,101 @@ export function PanelAdministracion() {
     const [isAddingNewMovie, setIsAddingNewMovie] = useState(false);
     const navigate = useNavigate();
 
+    const [formValues, setFormValues] = useState({
+        nombre: "",
+        autores: "",
+        director: "",
+        duracion: "",
+        genero_id: "",
+        imagen_url: ""
+    });
+
     useEffect(() => {
-        // Fetch de las películas desde la API
-        fetch("http://localhost:5000/api/peliculas")
+        fetchMovies();
+    }, []);
+
+    const fetchMovies = () => {
+        fetch("http://localhost:5000/api/peliculas/todas") // Usamos el nuevo endpoint
             .then(response => response.json())
             .then(data => setMovies(data))
             .catch(error => console.error("Error fetching movies:", error));
-    }, []);
+    };
 
     const handleEditClick = (movie) => {
         setSelectedMovie(movie);
         setIsAddingNewMovie(false);
+        setFormValues({
+            nombre: movie.nombre,
+            autores: movie.autores,
+            director: movie.director,
+            duracion: movie.duracion,
+            genero_id: movie.genero_id,
+            imagen_url: movie.imagen_url
+        });
     };
 
     const handleAddNewClick = () => {
-        setSelectedMovie({
-            id: null,
-            name: "",
-            authors: "",
-            director: "",
-            year: "",
-            genre: "",
-            imageUrl: ""
-        });
+        setSelectedMovie(null);
         setIsAddingNewMovie(true);
+        setFormValues({
+            nombre: "",
+            autores: "",
+            director: "",
+            duracion: "",
+            genero_id: "",
+            imagen_url: ""
+        });
+    };
+
+    const handleDeleteClick = async (movieId) => {
+        const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar esta película?");
+        if (!confirmDelete) return;
+
+        try {
+            const response = await fetch(`http://localhost:5000/api/peliculas/eliminarpel/${movieId}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                alert("Película eliminada correctamente.");
+                fetchMovies(); // Refrescar la lista de películas
+            } else {
+                const errorData = await response.json();
+                alert(errorData.message || "Error al eliminar la película.");
+            }
+        } catch (error) {
+            console.error("Error al eliminar la película:", error);
+            alert("Error al eliminar la película.");
+        }
     };
 
     const handleSave = async (e) => {
         e.preventDefault();
-    
         const payload = {
-            id: selectedMovie.id, // Será null para nuevas películas
-            nombre: e.target[0].value,
-            autores: e.target[1].value,
-            director: e.target[2].value,
-            duracion: e.target[3].value,
-            genero_id: parseInt(e.target[4].value), // Convierte a número si es necesario
-            imagen_url: e.target[5].value
+            id: selectedMovie ? selectedMovie.id : null,
+            ...formValues
         };
-    
+
+        const url = isAddingNewMovie
+            ? 'http://localhost:5000/api/peliculas/agregar' // Endpoint para agregar película
+            : 'http://localhost:5000/api/peliculas/editarpel'; // Endpoint para editar película
+
         try {
-            const response = await fetch('http://localhost:5000/api/editarpel', {
-                method: 'POST',
+            const response = await fetch(url, {
+                method: isAddingNewMovie ? 'POST' : 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(payload),
             });
-    
+
             const data = await response.json();
-    
+
             if (response.ok) {
                 alert(data.message);
-                // Refrescar la lista de películas
-                fetch("http://localhost:5000/api/peliculas")
-                    .then(response => response.json())
-                    .then(data => setMovies(data));
-                setSelectedMovie(null); // Limpia el formulario
+                fetchMovies(); 
+                setSelectedMovie(null);
+                setIsAddingNewMovie(false);
             } else {
                 alert(data.message || 'Error al guardar la película');
             }
@@ -73,7 +111,6 @@ export function PanelAdministracion() {
             alert('Error al guardar la película');
         }
     };
-    
 
     return (
         <Fragment>
@@ -82,48 +119,78 @@ export function PanelAdministracion() {
                     <div className="sidebar-header">
                         <h3>Películas</h3>
                         <button className="add-button" onClick={handleAddNewClick}>Agregar</button>
+                        <button className="btn btn-secondary" onClick={() => navigate(`/peliculas`)}>Volver</button>
                     </div>
                     <ul>
                         {movies.map(movie => (
                             <li key={movie.id}>
                                 {movie.nombre}
-                                <button className="btn btn-primary" onClick={() => handleEditClick(movie)}>Editar</button>
+                                <button className="btn btn-primary " onClick={() => handleEditClick(movie)}>Editar</button>
+                                <button className="btn btn-danger " onClick={() => handleDeleteClick(movie.id)}>Eliminar</button>
                             </li>
                         ))}
                     </ul>
-                    <button className="btn btn-danger" onClick={() => navigate(`/peliculas`)}>Volver</button>
                 </div>
                 <div className="details-panel">
-                    {selectedMovie ? (
+                    {selectedMovie || isAddingNewMovie ? (
                         <form className="edit-form" onSubmit={handleSave}>
-                        <h3>{isAddingNewMovie ? "Agregar Nueva Película" : "Editar Película"}</h3>
-                        <div className="form-group">
-                            <label>Nombre de la Película:</label>
-                            <input type="text" defaultValue={selectedMovie.nombre} />
-                        </div>
-                        <div className="form-group">
-                            <label>Autores:</label>
-                            <input type="text" defaultValue={selectedMovie.autores} />
-                        </div>
-                        <div className="form-group">
-                            <label>Director:</label>
-                            <input type="text" defaultValue={selectedMovie.director} />
-                        </div>
-                        <div className="form-group">
-                            <label>Duración:</label>
-                            <input type="text" defaultValue={selectedMovie.duracion} />
-                        </div>
-                        <div className="form-group">
-                            <label>Género (ID):</label>
-                            <input type="text" defaultValue={selectedMovie.genero_id} />
-                        </div>
-                        <div className="form-group">
-                            <label>URL Imagen:</label>
-                            <input type="text" defaultValue={selectedMovie.imagen_url} />
-                        </div>
-                        <button type="submit" className="save-button">Guardar</button>
-                    </form>
-                    
+                            <h3>{isAddingNewMovie ? "Agregar Nueva Película" : "Editar Película"}</h3>
+                            <div className="form-group">
+                                <label>Nombre de la Película:</label>
+                                <input
+                                    type="text"
+                                    name="nombre"
+                                    value={formValues.nombre}
+                                    onChange={(e) => setFormValues({ ...formValues, nombre: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Autores:</label>
+                                <input
+                                    type="text"
+                                    name="autores"
+                                    value={formValues.autores}
+                                    onChange={(e) => setFormValues({ ...formValues, autores: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Director:</label>
+                                <input
+                                    type="text"
+                                    name="director"
+                                    value={formValues.director}
+                                    onChange={(e) => setFormValues({ ...formValues, director: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Duración:</label>
+                                <input
+                                    type="text"
+                                    name="duracion"
+                                    value={formValues.duracion}
+                                    onChange={(e) => setFormValues({ ...formValues, duracion: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Género (ID):</label>
+                                <input
+                                    type="text"
+                                    name="genero_id"
+                                    value={formValues.genero_id}
+                                    onChange={(e) => setFormValues({ ...formValues, genero_id: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>URL Imagen:</label>
+                                <input
+                                    type="text"
+                                    name="imagen_url"
+                                    value={formValues.imagen_url}
+                                    onChange={(e) => setFormValues({ ...formValues, imagen_url: e.target.value })}
+                                />
+                            </div>
+                            <button type="submit" className="save-button">Guardar</button>
+                        </form>
                     ) : (
                         <p>Seleccione una película para editar o agregue una nueva</p>
                     )}

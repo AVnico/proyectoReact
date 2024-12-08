@@ -5,21 +5,33 @@ const db = require('../database');
 const enrutador = express.Router();
 
 enrutador.post('/registro', async (req, res) => {
-  const { nombre_usuario, contraseña, generos } = req.body;
+  const { nombre_usuario, contraseña, generos, contrasenaparental } = req.body;
+
+  if (!contrasenaparental || isNaN(contrasenaparental)) {
+      return res.status(400).json({ error: 'La contraseña parental debe ser un número válido.' });
+  }
+
   try {
-    const contraseñaCifrada = await bcrypt.hash(contraseña, 10);
-    const [resultado] = await db.query('INSERT INTO usuarios (nombre_usuario, contraseña) VALUES (?, ?)', [nombre_usuario, contraseñaCifrada]);
-    const usuarioId = resultado.insertId;
-    if (generos && generos.length > 0) {
-      const generosValues = generos.map((generoId) => [usuarioId, generoId]);
-      await db.query('INSERT INTO usuarios_generos (usuario_id, genero_id) VALUES ?', [generosValues]);
-    }
-    res.status(201).json({ mensaje: 'Usuario creado con éxito' });
+      const contraseñaCifrada = await bcrypt.hash(contraseña, 10);
+
+      const [resultado] = await db.query(
+          'INSERT INTO usuarios (nombre_usuario, contraseña, contrasenaparental) VALUES (?, ?, ?)',
+          [nombre_usuario, contraseñaCifrada, contrasenaparental]
+      );
+      const usuarioId = resultado.insertId;
+
+      if (generos && generos.length > 0) {
+          const generosValues = generos.map((generoId) => [usuarioId, generoId]);
+          await db.query('INSERT INTO usuarios_generos (usuario_id, genero_id) VALUES ?', [generosValues]);
+      }
+
+      res.status(201).json({ mensaje: 'Usuario creado con éxito' });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al registrar el usuario' });
+      console.error(error);
+      res.status(500).json({ error: 'Error al registrar el usuario' });
   }
 });
+
 
 enrutador.post('/login', async (req, res) => {
   const { nombre_usuario, contraseña } = req.body;
@@ -94,6 +106,80 @@ enrutador.post('/controlparental', async (req, res) => {
       return res.status(500).json({ error: 'Error interno del servidor.' });
   }
 });
+
+enrutador.post('/favoritos', async (req, res) => {
+  const { usuario_id, pelicula_id } = req.body;
+
+  try {
+      const [exists] = await db.query(
+          'SELECT * FROM favoritos WHERE usuario_id = ? AND pelicula_id = ?',
+          [usuario_id, pelicula_id]
+      );
+
+      if (exists.length > 0) {
+          return res.status(400).json({ message: 'La película ya está en favoritos' });
+      }
+
+      await db.query('INSERT INTO favoritos (usuario_id, pelicula_id) VALUES (?, ?)', [usuario_id, pelicula_id]);
+      res.status(201).json({ message: 'Película añadida a favoritos' });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error al agregar a favoritos' });
+  }
+});
+
+enrutador.get('/favoritos/:usuario_id', async (req, res) => {
+  const { usuario_id } = req.params;
+
+  try {
+      const [result] = await db.query(
+          `SELECT p.* FROM favoritos f
+           JOIN peliculas p ON f.pelicula_id = p.id
+           WHERE f.usuario_id = ?`,
+          [usuario_id]
+      );
+
+      res.json(result);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error al obtener los favoritos' });
+  }
+});
+
+enrutador.delete('/favoritos', async (req, res) => {
+  const { usuario_id, pelicula_id } = req.query;
+
+  try {
+      await db.query('DELETE FROM favoritos WHERE usuario_id = ? AND pelicula_id = ?', [usuario_id, pelicula_id]);
+      res.status(200).json({ message: 'Película eliminada de favoritos' });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error al eliminar de favoritos' });
+  }
+});
+// Ruta para obtener el género favorito del usuario
+enrutador.get('/usuarios/:usuario_id/genero-favorito', async (req, res) => {
+  const { usuario_id } = req.params;
+
+  try {
+    const [result] = await db.query(
+      `SELECT genero_id FROM usuarios_generos WHERE usuario_id = ?`,
+      [usuario_id]
+    );
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    res.json(result[0]);
+  } catch (error) {
+    console.error("Error al obtener el género favorito del usuario:", error);
+    res.status(500).json({ message: "Error al obtener el género favorito" });
+  }
+});
+
+
+
 
 
 module.exports = enrutador;
