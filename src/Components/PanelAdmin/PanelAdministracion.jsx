@@ -118,15 +118,21 @@ export function PanelAdministracion() {
                 <div className="sidebar">
                     <div className="sidebar-header">
                         <h3>Películas</h3>
+                        <div  style={{ display: "flex", marginLeft: "auto", gap: "10px" }}>
                         <button className="add-button" onClick={handleAddNewClick}>Agregar</button>
                         <button className="btn btn-secondary" onClick={() => navigate(`/peliculas`)}>Volver</button>
+                        </div>
+                        
                     </div>
                     <ul>
                         {movies.map(movie => (
                             <li key={movie.id}>
                                 {movie.nombre}
+                                <div style={{ display: "flex", marginLeft: "auto", gap: "10px" }}>
                                 <button className="btn btn-primary " onClick={() => handleEditClick(movie)}>Editar</button>
                                 <button className="btn btn-danger " onClick={() => handleDeleteClick(movie.id)}>Eliminar</button>
+                                </div>
+                                
                             </li>
                         ))}
                     </ul>

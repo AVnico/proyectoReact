@@ -85,8 +85,8 @@ li button:hover {
 }
 
 .details-panel {
-    flex: 1; /* Ocupa el resto del espacio */
-    padding: 30px;
+    flex: 1; 
+    height: 100vh; /* Ocupar toda la altura de la ventana */
     overflow-y: auto;
     background-color: #fdfdfd; /* Fondo limpio */
     display: flex;

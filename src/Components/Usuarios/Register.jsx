@@ -86,13 +86,7 @@ export function Register() {
                                     onChange={(e) => setContraseña(e.target.value)}
                                     required
                                 />
-                                <button
-                                    className="btn btn-outline-secondary"
-                                    type="button"
-                                    onClick={() => setShowPass(!showPass)}
-                                >
-                                    {showPass ? "Ocultar" : "Mostrar"}
-                                </button>
+                                
                             </div>
                         </div>
                         <div className="form-group mb-2">

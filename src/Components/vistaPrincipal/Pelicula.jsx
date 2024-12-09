@@ -44,7 +44,7 @@ export function Pelicula({ pelicula }) {
                     Ver detalles
                 </button>
                 <button
-                    className="btn-serie btn-warning ml-2"
+                    className="btn-serie btn-warning mt-2 ml-2"
                     onClick={handleAddToFavorites}>
                     Añadir a Favoritos
                 </button>
