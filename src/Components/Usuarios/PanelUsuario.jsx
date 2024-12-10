@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import './PanelUsuario.css';
 
 import { useNavigate } from "react-router-dom";
 
@@ -82,9 +83,9 @@ export function PanelUsuario() {
                         </div>
                         <div className="form-group mb-3">
                             <label>Géneros favoritos</label>
-                            <div className="d-flex flex-wrap">
+                            <div className="row">
                                 {Object.keys(generos).map((genero, index) => (
-                                    <div className="form-check me-3" key={index}>
+                                    <div className="col-6 form-check" key={index}> {/* Dos columnas */}
                                         <input
                                             className="form-check-input"
                                             type="checkbox"
@@ -99,6 +100,7 @@ export function PanelUsuario() {
                                 ))}
                             </div>
                         </div>
+
                         <button
                             className="btn btn-primary w-100 mt-3"
                             onClick={handleSaveChanges}

@@ -65,7 +65,7 @@ export function Login() {
                         />
                     </div>
 
-                    <button className="login-button" onClick={handleLogin}>Iniciar sesión</button>
+                    <button className="login-but" onClick={handleLogin}>Iniciar sesión</button>
                     <button className="register-button" onClick={goToRegister}>Registrarse</button>
                 </div>
             </div>
